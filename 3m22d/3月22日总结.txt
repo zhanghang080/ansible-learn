@@ -1,0 +1,11 @@
+1.查找帮助文档的方法：终端输入  ansible-doc [模块名称]
+
+2.运行playbook的方法： ansible-playbook [模块名称]
+
+3.在ansible的配置文件中配置了localhost和ip为10.250.16.130的远程主机（这些在上周也做了，并配置ssh免密登陆）
+利用remote_user 设置playbook 连接远程主机时的用户名
+查询并测试了ping shell debug import_tasks copy yum模块的用法
+测试了playbook中进行条件判断（when）与循环（with_items 或 loop）的方法
+
+测试的module：ping shell debug import_tasks yum copy 
+测试的playbook keywords: when loop remote_user vars hosts name

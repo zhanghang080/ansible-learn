@@ -1,0 +1,19 @@
+- hosts: myremote
+  remote_user: root
+  tasks:
+    - name: test loop
+      vars: 
+        list1:
+      
+          - 1
+          - 3
+          - "abcd"
+          - 5
+          - "hello world"
+     
+      loop: "{{list1}}"
+      debug:
+        msg: "my item is: {{item}}"
+      when: list1.index(item) <=3
+
+      

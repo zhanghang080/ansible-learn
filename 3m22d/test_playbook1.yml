@@ -1,0 +1,6 @@
+- hosts: mytogether
+  tasks: 
+    - name: test ping,creator is {{creator}}
+      ping: null
+      register: pingresult
+    - import_tasks: ./test_playbook2.yml

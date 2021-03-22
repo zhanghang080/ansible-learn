@@ -1,0 +1,11 @@
+- name: test debug module
+  debug: 
+    msg: "ping's result is : {{pingresult}}"
+- name: test copy,creator is {{mycreator}}
+  copy:
+    src: ~/Desktop/mytest/test.js
+    dest: ~/Desktop
+  when: pingresult.ping == "pong"
+- name: test shell,creator is {{creator}}
+  shell: echo 'hello world'
+  when: pingresult.ping == "pong"
