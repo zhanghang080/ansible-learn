@@ -1,0 +1,27 @@
+- name: test_get_url
+  uri:
+    url: https://www.sina.com.cn/
+    #return_content: True
+- name: get all variables
+  shell: echo {{hostvars[inventory_hostname]}}
+  register: shellres
+- debug:
+    msg: shellres is {{shellres.stdout_lines}}
+- assert:
+    that:  "2 == 2"
+    fail_msg: "ERROR!!!"
+    success_msg: "SUCCESS!!!"
+- set_fact:
+    fact1:
+      name: alex
+      age: 23
+    fact2:
+      name: alice
+      gender: female
+- debug:
+    msg: fact1 is {{fact1}},fact2's name is {{fact2.name}},gender is {{fact2.gender}}
+- assert:
+    that:  "1 == 2"
+    fail_msg: "ERROR!!!"
+    success_msg: "SUCCESS!!!"
+

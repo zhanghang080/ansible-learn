@@ -1,0 +1,10 @@
+- hosts: mylocal
+  tasks:
+    - name: test shell
+      shell: sh /Users/shjin/Desktop/mytest/ansible-learn/3m23d/test_shell1.sh
+      register: shell_result
+    - name: debug shell
+      debug:
+        msg: my debug result is {{shell_result}}
+    - include_tasks: ./test_get_url.yml
+    

@@ -1,0 +1,15 @@
+[mylocal]
+127.0.0.1
+[mylocal:vars]
+mycreator=shuo.jin
+
+[myremote]
+10.250.16.130 
+[myremote:vars]
+creator=Jin Shuo
+ansible_ssh_user=root
+[mytogether]
+127.0.0.1
+10.250.16.130 
+[mytogether:vars]
+creator=shjin

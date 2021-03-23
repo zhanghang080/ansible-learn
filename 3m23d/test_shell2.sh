@@ -1,0 +1,1 @@
+ansible-playbook /Users/shjin/Desktop/mytest/ansible-learn/3m22d/test_playbook1.yml

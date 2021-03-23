@@ -1,0 +1,15 @@
+已学习并测试的模块：
+ping shell debug import_tasks include_tasks set_fact yum assert get_url file copy
+
+已学习并测试的ansible keywords  :
+with_items loop loop_control register delegate_to args when remote_user
+
+笔记：
+1.set_fact 设定的变量，是全局的，可以在多个play中使用，vars设定的变量只能在设定它的play里使用。
+2. 使用shell 模块时 如果有which 指令会报错， 需要在指令开头导入当前环境变量 （示例在test_delegate.yml）
+3. when 相当于python中的if ，只有在其表达式结果为true则执行相应模块
+，用法与python 的if相同，且可使用python 中的函数
+4. 循环可使用with_items 或者 loop ，循环变量名称为 item， 可以用于循环执行模块。
+5. loop_control 用于对循环进行控制，英文文档中其下关键字有 label pause index_var loop_var等
+pause用于指定每次循环间隔时间， index_var用于获取循环的index序号  
+6. delegate_to 用于将一个task 委托给另一个主机执行

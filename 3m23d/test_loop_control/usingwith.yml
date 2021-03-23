@@ -1,0 +1,14 @@
+- debug:
+    msg: my msg is {{item}}
+  loop: "{{list1}}"
+  when: index <2
+  loop_control:
+    label: "hello,my name is {{item.name}}"
+    pause: 1
+    index_var: index
+  register: debugres
+  #notify: after usingwith yml
+- file:
+    state: touch
+    path: ~/Desktop/myusingwithtest.txt
+  notify: after usingwith yml

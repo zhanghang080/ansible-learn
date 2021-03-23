@@ -1,0 +1,15 @@
+- hosts: mylocal
+  tasks:
+    - import_tasks: ./test_PATH.yml
+    - shell: "export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/local/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin ; 
+    which mysql"
+      register: slres
+      
+    - debug:
+        msg: my msg is {{slres.stdout}} ，ip is {{ ansible_default_ipv4.address }}
+      delegate_to: 10.250.16.130 
+    - import_tasks: ./test_PATH.yml
+
+#问题： shell模块直接使用which 会报错，原因是ansible的shell模块不会使用当前shell的环境变量
+#需要预先导入用的所有环境变量。
+

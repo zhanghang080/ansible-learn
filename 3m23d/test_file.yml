@@ -1,0 +1,6 @@
+- hosts: mylocal
+  tasks:
+    - file:
+        path: ~/testfile.txt
+        state: touch
+      delegate_to: 10.250.16.130

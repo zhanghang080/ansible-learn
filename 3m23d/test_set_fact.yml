@@ -1,0 +1,19 @@
+- hosts: mytogether
+  vars:
+    testvar1: tv1
+  tasks:
+  - set_fact:
+      testvar2: tv2
+  - debug:
+      msg: "{{testvar1}} ----- {{testvar2}}"
+ 
+- hosts: mytogether
+  tasks:
+  - name: other play get testvar2
+    debug:
+      msg: "{{testvar2}}"
+  - name: other play get testvar1
+    debug:
+      msg: "{{testvar1}}"
+
+#set_fact 设定的变量，是全局的，可以在多个play中使用，vars设定的变量只能在设定它的play里使用。

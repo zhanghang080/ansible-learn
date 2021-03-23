@@ -1,0 +1,20 @@
+- hosts: mytogether
+  vars:
+    list1:
+      - name: alex
+        gender: male
+        age: 23
+      - name: alice
+        gender: female
+        age: 43
+      - name: james
+        gender: male
+        age: 66
+  tasks:
+    - import_tasks: ./test_loop_control/usingwith.yml
+  handlers:
+    - name: after usingwith yml
+      debug:
+        msg: after usingwith yml task is {{debugres}}
+
+  

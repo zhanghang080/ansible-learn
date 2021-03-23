@@ -1,0 +1,8 @@
+
+
+- hosts: mytogether
+  tasks:
+    - name: check using which os
+      debug:
+        msg: "currently using os is: {{ansible_distribution}}"
+

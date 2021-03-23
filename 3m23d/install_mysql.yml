@@ -1,0 +1,15 @@
+#brew install mysql        MacOSX
+#yum install mysql         CentOS
+#/usr/bin/yum
+- hosts: mytogether
+  vars:
+    shell_obj:
+      macos: "/usr/local/bin/brew install mysql"
+      centos: "yum install mysql"
+  tasks:
+    - shell: "{{shell_obj.macos}}"
+      when: ansible_distribution == "MacOSX" 
+    - yum:
+        name: mysql
+        state: latest
+      when: ansible_distribution == "CentOS"
