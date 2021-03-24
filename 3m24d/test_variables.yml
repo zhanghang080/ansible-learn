@@ -1,0 +1,46 @@
+- hosts: mytogether
+  tasks:
+    - debug:
+        msg: hostvars is {{hostvars}}
+      tags: check hostvars
+    - debug: 
+        msg: groups is {{groups}}
+      tags: check groups
+    - debug: 
+        msg: group_names is {{group_names}}
+      tags: check group_names
+    - debug: 
+        msg: inventory_hostname is {{inventory_hostname}}
+      tags: check inventory_hostname
+
+# 测试 关键字 tags 和 ansible提供的特殊变量 hostvars groups group_names  inventory_hostname
+# ansible-playbook --tags="check groups" [file name]只执行tags为 check groups 的task
+# ansible-playbook --skip-tags="check groups" [file name]执行除了tags为 check groups 的其他所有task
+# hostvars 关于主机的相关变量 
+# groups 资产文件中的组和主机
+# group_names :用于标识当前正在执行task的目标主机位于的组
+# inventory_hostname：当前主机ip
+# ansible-playbook --skip-tags="check groups test_variables.yml"  结果：
+# TASK [debug] *******************************************************************
+# ok: [127.0.0.1] => {
+#     "msg": "groups is {'all': ['127.0.0.1', '10.250.16.130'], 'ungrouped': [], 'mylocal': ['127.0.0.1'], 'myremote': ['10.250.16.130'], 'mytogether': ['127.0.0.1', '10.250.16.130']}"
+# }
+# ok: [10.250.16.130] => {
+#     "msg": "groups is {'all': ['127.0.0.1', '10.250.16.130'], 'ungrouped': [], 'mylocal': ['127.0.0.1'], 'myremote': ['10.250.16.130'], 'mytogether': ['127.0.0.1', '10.250.16.130']}"
+# }
+
+# TASK [debug] *******************************************************************
+# ok: [127.0.0.1] => {
+#     "msg": "group_names is ['mylocal', 'mytogether']"
+# }
+# ok: [10.250.16.130] => {
+#     "msg": "group_names is ['myremote', 'mytogether']"
+# }
+
+# TASK [debug] *******************************************************************
+# ok: [127.0.0.1] => {
+#     "msg": "inventory_hostname is 127.0.0.1"
+# }
+# ok: [10.250.16.130] => {
+#     "msg": "inventory_hostname is 10.250.16.130"
+# }

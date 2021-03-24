@@ -1,0 +1,15 @@
+- hosts: mylocal
+  tasks: 
+    - shell: "
+    echo $PATH"
+      register: shellRes1
+    - debug: 
+        msg: msg is {{shellRes1}}
+
+    - shell: "
+    export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/local/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin ; 
+    which mysql"
+      register: shellRes2
+    - debug: 
+        msg: msg is {{shellRes2}}
+      

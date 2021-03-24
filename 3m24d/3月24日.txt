@@ -1,0 +1,54 @@
+笔记
+一、 查看并测试了一些ansible的keyword
+    昨天ansible 的module 看了一些，大致了解了module的用法，module就类似于python中的函数，
+    遇到没见过的只要用ansible-doc就可以查，很方便
+    今天主要看了一些ansible上面的keyword，这些没法用ansible-doc查，就具体看了一下
+    目前试过的有 loop_control ,register, delegate_to, when , tags, gather_facts, remote_user
+
+二、 在ansible-doc 看了f5 bigip的三个module： bigip_profile_http  bigip_device_info bigip_partition
+    并查看f5-oslbaasv2-systest这个repo中对这三个module用到的主要参数看了一下
+    由于对bigip 不是很了解，所以也不太清楚如何具体应用这三个module 
+    
+1.   bigip_profile_http
+    简介： 在bigip设备上 管理http配置
+    参数： 
+        1.1 partition : 用于管理资源的设备partition (str，默认为common)
+        1.2 insert_xforwarded_for: 指定系统是否要向发送至服务器ip的http request中插入 X—Forwarded-X—For
+            header (bool) 
+        1.3 name : 指定配置文件的名称 (str)
+        1.4 provider : 同 bigip_partition 的 provider
+
+2.   bigip_device_info
+    简介： 从F5 bigip设备上 采集信息
+    参数：
+        2.1 gather_subset : 限制返回给指定subset的信息 (list)
+        2.2 provider: 同 bigip_partition 的 provider
+
+3.   bigip_partition
+    简介：  在bigip上管理 partitions
+    参数：
+        3.1 name : partition的名字 (str)
+        3.2 state :  partition是否应该存在（str：present或者absent）
+        3.3 provider : 包含connection 细节信息的dict
+            3.3.1
+                user : 用户名。用户必须有目标主机的管理权限
+            3.3.2
+                server ： bigip host主机 （str）
+            3.3.3
+                password ： 密码
+            3.3.4
+                validate_certs ： 用于确定是否建立SSL验证（bool）
+
+三、 看了jinja2 模版
+    ansible 的template模块可以处理使用jinja2语法的.j2文件，并将渲染后的文本写入到目标文件中。
+    而且ansible playbook的yml文件中 也可以使用jinja2语法（目前知道的是双大括号和过滤器）
+    jinja2 是一种基于python的模版引擎，以前也用过类似的，如asp.net 的webform，js上面的handlebar
+    vuejs用的 mustache之类的，因此看的比较快
+    主要的收获就是 jinja2中用到了filter，类似于linux中的 管道，可以对变量进行连续的处理
+    如default : 如果遇到未定义的变量，会报错，使用这个，遇到未定义的变量，会输出设定的默认值
+    hash ： 生成字符串对应的hash码
+    join ： 拼接字符串列表
+    upper : 字符串全部大写
+    lower ： 字符串全部小写
+    to_nice_json / to_nice_yaml : 转化为json / yaml格式字符串
+    list: 将一个值转化为列表

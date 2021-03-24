@@ -1,0 +1,165 @@
+# BEGIN ANSIBLE MANAGED BLOCK
+{'msg': "my msg is changed: false\nchecksum: 2d21ec66d8714d47c834c5ac9611b86ce3a946c5\ndest: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res\ndiff:\n    after:\n        path: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res\n    before:\n        path: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res\nfailed: false\ngid: 1437522721\ngroup: OLYMPUS\\Domain Users\nmode: '0644'\nowner: shjin\npath: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res\nsize: 122\nstate: file\nuid: 553965699\n", 'failed': False, 'changed': False}
+# END ANSIBLE MANAGED BLOCK
+
+my msg is changed: false
+checksum: 2d21ec66d8714d47c834c5ac9611b86ce3a946c5
+dest: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res
+diff:
+    after:
+        path: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res
+    before:
+        path: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res
+failed: false
+gid: 1437522721
+group: OLYMPUS\Domain Users
+mode: '0644'
+owner: shjin
+path: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res
+size: 122
+state: file
+uid: 553965699
+
+my msg is {
+    "changed": false,
+    "checksum": "2d21ec66d8714d47c834c5ac9611b86ce3a946c5",
+    "dest": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "diff": {
+        "after": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        },
+        "before": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        }
+    },
+    "failed": false,
+    "gid": 1437522721,
+    "group": "OLYMPUS\\Domain Users",
+    "mode": "0644",
+    "owner": "shjin",
+    "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "size": 122,
+    "state": "file",
+    "uid": 553965699
+}
+
+my msg is {
+    "changed": false,
+    "checksum": "2d21ec66d8714d47c834c5ac9611b86ce3a946c5",
+    "dest": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "diff": {
+        "after": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        },
+        "before": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        }
+    },
+    "failed": false,
+    "gid": 1437522721,
+    "group": "OLYMPUS\\Domain Users",
+    "mode": "0644",
+    "owner": "shjin",
+    "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "size": 122,
+    "state": "file",
+    "uid": 553965699
+}
+
+my msg is {
+    "changed": false,
+    "checksum": "2d21ec66d8714d47c834c5ac9611b86ce3a946c5",
+    "dest": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "diff": {
+        "after": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        },
+        "before": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        }
+    },
+    "failed": false,
+    "gid": 1437522721,
+    "group": "OLYMPUS\\Domain Users",
+    "mode": "0644",
+    "owner": "shjin",
+    "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "size": 122,
+    "state": "file",
+    "uid": 553965699
+}
+
+my msg is {
+    "changed": true,
+    "checksum": "dab1a23c691c1d2c4c6a0742a18d0fc77b54d185",
+    "dest": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "diff": [],
+    "failed": false,
+    "gid": 1437522721,
+    "group": "OLYMPUS\\Domain Users",
+    "md5sum": "b66739112c1d3a0f31fa4c46f8dca13c",
+    "mode": "0644",
+    "owner": "shjin",
+    "size": 126,
+    "src": "/Users/shjin/.ansible/tmp/ansible-tmp-1616578480.275968-29991-90053057032159/source",
+    "state": "file",
+    "uid": 553965699
+}
+
+my msg is {
+    "changed": true,
+    "checksum": "d39d21738cb7b6e0c9bcdc96fadae129c2d371b6",
+    "dest": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "diff": [],
+    "failed": false,
+    "gid": 1437522721,
+    "group": "OLYMPUS\\Domain Users",
+    "md5sum": "98f45cea0b74bc8ee4d3587b1dd59569",
+    "mode": "0644",
+    "owner": "shjin",
+    "size": 175,
+    "src": "/Users/shjin/.ansible/tmp/ansible-tmp-1616578614.002903-30214-41650048441355/source",
+    "state": "file",
+    "uid": 553965699
+}
+
+my msg is {
+    "changed": true,
+    "checksum": "14aefe3a9ec771a7164101cf925776fb3a7ac7e0",
+    "dest": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "diff": [],
+    "failed": false,
+    "gid": 1437522721,
+    "group": "OLYMPUS\\Domain Users",
+    "md5sum": "176748bfc1b4f9e207c5b46e8d876031",
+    "mode": "0644",
+    "owner": "shjin",
+    "size": 229,
+    "src": "/Users/shjin/.ansible/tmp/ansible-tmp-1616579196.64691-30957-240962330255874/source",
+    "state": "file",
+    "uid": 553965699
+}
+
+my msg is {
+    "changed": false,
+    "checksum": "14aefe3a9ec771a7164101cf925776fb3a7ac7e0",
+    "dest": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "diff": {
+        "after": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        },
+        "before": {
+            "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res"
+        }
+    },
+    "failed": false,
+    "gid": 1437522721,
+    "group": "OLYMPUS\\Domain Users",
+    "mode": "0644",
+    "owner": "shjin",
+    "path": "/Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res",
+    "size": 229,
+    "state": "file",
+    "uid": 553965699
+}
+

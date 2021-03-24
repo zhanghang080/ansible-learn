@@ -1,0 +1,18 @@
+{% for item in mylist %}
+
+    {% if item == "testhash"%}
+        {{ item | hash |trim}}
+    {% endif %}
+
+{% endfor %}
+
+{{mylist}}
+
+{{list1 | join(" ") }}
+{{list1 | join("|") }}
+
+{{mysad | default("no such variable!")}}
+
+{{mylist[0]}}
+{{mylist[0] | list}}
+{{person | map(attribute=name)}}

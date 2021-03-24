@@ -1,0 +1,16 @@
+- hosts: mytogether
+  tasks:
+    - shell: "pwd"
+      register: shell_res
+    - debug:
+        msg: shell result is {{shell_res}}
+
+# 显示shell模块执行的当前全路径
+#结果：
+
+# ok: [127.0.0.1] => {
+#     "msg": "shell result is {'changed': True, 'end': '2021-03-24 14:42:37.641467', 'stdout': '/Users/shjin', 'cmd': 'pwd', 'rc': 0, 'start': '2021-03-24 14:42:37.632595', 'stderr': '', 'delta': '0:00:00.008872', 'stdout_lines': ['/Users/shjin'], 'stderr_lines': [], 'failed': False}"
+# }
+# ok: [10.250.16.130] => {
+#     "msg": "shell result is {'changed': True, 'end': '2021-03-24 06:42:37.626954', 'stdout': '/root', 'cmd': 'pwd', 'rc': 0, 'start': '2021-03-24 06:42:37.621954', 'stderr': '', 'delta': '0:00:00.005000', 'stdout_lines': ['/root'], 'stderr_lines': [], 'failed': False}"
+# }

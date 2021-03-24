@@ -1,0 +1,25 @@
+- hosts: mytogether
+  tasks:
+    - shell: "pwd"
+      register: shell_res
+    - debug:
+        msg: shell root path is {{shell_res}}
+    - template:
+        src: ./test_tmplate1.j2
+        dest: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_tmplate1.res
+      register: tmpl_res
+      vars:
+        str1: hello world
+        list1:
+          - how are you
+          - nice to meet you
+          - alex mercer
+          - hello world
+          - learn ansible
+    - debug:
+        msg: tmpl result is {{tmpl_res}}
+# 测试 template模块  它渲染一个jinja2模版文件， 并将渲染后的文本写入到指定路径中
+# template 读取一个.j2文件  采用jinja2 格式，是一种模版引擎，该模块将j2文件处理为文本，并写入目标路径 
+#参数src为j2文件地址
+# dest参数为写入文件地址
+# jinja2 格式： 双大括号内 输出变量    大括号加百分号 进行逻辑的处理 

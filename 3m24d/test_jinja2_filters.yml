@@ -1,0 +1,35 @@
+- hosts: mylocal
+  tasks:
+    - template:
+        src: ./test_jinja2_filters.j2
+        dest: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/test_jinja2_filters.res
+      vars:
+
+        person:
+          name: alex mercer
+          age: 23
+          gender: male
+        mylist:
+          - testhash
+        list1:
+          - I
+          - am
+          - a 
+          - chinese
+      register: res
+    - debug:
+        msg: my msg is {{res | to_nice_json }}
+      register: debug_msg
+    - file:
+        state: touch
+        path: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/debugres.txt
+    - blockinfile:
+        path: /Users/shjin/Desktop/mytest/ansible-learn/3m24d/debugres.txt
+        marker: ""
+        block: "{{debug_msg.msg}}"
+    - debug:
+        msg: my msg is {{"hello world" | upper}}
+
+# jinja2中的过滤器   符号为 |   类似于linux 中的管道(上一个命令的输出用于下一个命令的输入)
+#  用于对一个变量进行连续的处理
+# 过滤器与双大括号也可用在ansible playbook的yml文件中
