@@ -1,0 +1,60 @@
+- hosts: mylocal
+  tasks:
+    - shell: "sleep 3; echo hello world;sleep 3;"
+      register: async_res1
+      async: 1
+      poll: 0
+
+    - shell: "sleep 10"
+      register: async_res2
+      async: 3000
+      poll: 0 
+
+    - debug:
+        msg: res is {{async_res1}}
+
+    - async_status:
+        jid: "{{async_res1.ansible_job_id}}" 
+      retries: 1000
+      delay: 1
+      until: async_res1_status.finished
+      register: async_res1_status
+    
+    - debug:
+        msg: res is {{async_res1_status }}, {{async_res1}}
+
+# async 和 poll 是 ansible keyword， async_status 是 ansible module
+# 如果不用async， tasks 是同步阻塞执行，如果tasks中间有task执行时间很长，那么后面的task都得等
+# 为了解决这个问题， 可以考虑使用并发操作， 从而使耗时task 变成非阻塞的。
+# async的value代表异步执行最大等待时间， 如果为0 则会同步执行
+# poll： 当运行异步任务时，如果poll不为0，则会每隔n秒 轮询一次这个task，看是否完成，这个过程是阻塞的
+# 如果 poll为0， 则不会轮询，这样就是异步非阻塞的
+# 进行异步任务后，如果后续task 需要这个异步task 的结果，则可以使用ansible模块 async_status
+# async_status 一般与 retries 和until 结合使用，在后续需要这个异步任务的结果时，
+# 使用retries 重复运行 async_status， 直到（until） async_status 的结果（register 的变量）
+# 中 finished 为1。 
+# async_status 需要ansible job id 作为参数
+# 异步任务未完成的结果：
+# ok: [127.0.0.1] => {
+#     "msg": "res is {'STARTED': 1, 'FINISHED': 0, 
+# 'RESULTS_FILE': '/USERS/SHJIN/.ANSIBLE_ASYNC/154618848340.32281', 
+# 'ANSIBLE_JOB_ID': '154618848340.32281', 'CHANGED': TRUE, 'FAILED': FALSE}"
+# }
+# 可以看出finished为0 ，即未完成 ,完成后，ansible会将异步任务执行结果
+# 写入/USERS/SHJIN/.ANSIBLE_ASYNC/154618848340.32281文件中
+# 如果后续任务 需要 异步任务完成结果，则可使用async_status模块进行同步阻塞轮询，
+# 轮询发现异步任务已完成，才进行后续任务。
+# 异步任务经async_status 轮询 完成的结果： 
+# ok: [127.0.0.1] => {
+#     "msg": "res is {'changed': True, 
+#     'end': '2021-03-25 14:43:46.376346', 
+# 'ansible_job_id': '154618848340.32281', 
+# 'stdout': 'hello world', 'cmd': 'sleep 3; echo hello world;sleep 3;',
+#  'rc': 0, 'start': '2021-03-25 14:43:40.354185', 
+#  'finished': 1, 
+#  'stderr': '', 'delta': '0:00:06.022161', 
+#  'stdout_lines': ['hello world'], 'stderr_lines': [], 
+#  'failed': False, 'attempts': 5}"
+# }
+# 此时finished 为1 task已经完成，并得到结果，此时为阻塞。 类似于promise模式
+

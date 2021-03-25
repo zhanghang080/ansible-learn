@@ -1,0 +1,18 @@
+一、 ansible 查缺补漏，
+    查看了ansible keyword ： async pool retries until   ，
+    ansible module：   async_status
+    这些keyword 和 module 主要用于 task的异步执行 与重复执行
+    并对上述keyword 、 module进行测试
+    看了ansible-playbook命令的参数 ： -i  指定inventory资产文件路径
+     -e  定义变量  -e @    指定定义变量的yml或者json文件
+     
+
+二、 openstack 初步认识
+    初步了解云计算， IaaS(infrastructure as a service) 、 
+    PaaS(platform as a service) 、
+    SaaS(software as a service)
+    lbaaS((load balance as a service))
+    了解到openstack 是一款云计算管理工具，用python开发，用来管理
+    IAAS云端资源 
+    openstack分为多个组件，核心组件为
+    Nova Cinder Glance Neutron Swift Keystone

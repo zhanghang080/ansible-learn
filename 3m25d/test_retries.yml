@@ -1,0 +1,13 @@
+- hosts: mylocal
+  tasks: 
+    - shell: "echo hello"
+      register: ping_res
+      retries: 10
+      delay: 0.1
+      until: ping_res.rc == 1
+    - debug:
+        msg: ping res is {{ping_res | upper}}
+
+# 在一个task中，retries 和 until这两个keyword 一起使用。
+# 一个task 将 重新执行（retry） n次 直到 until 中表达式的值 为 true时才停止。
+#  如果retry n次， until中表达式的值仍然为false， 则会报错
