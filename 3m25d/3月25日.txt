@@ -5,6 +5,13 @@
     并对上述keyword 、 module进行测试
     看了ansible-playbook命令的参数 ： -i  指定inventory资产文件路径
      -e  定义变量  -e @    指定定义变量的yml或者json文件
+     对于-i 指定inventorys，如果在/etc/ansible/ansible.cfg 里 设定
+     [defaults]
+     Inventory = inventory文件路径的话，
+     如果不写 -i ，就会用这个默认的路径，
+     如果 ansible.cfg 里没写，
+     就必须写-i [inventory文件路径]，否则会报错，因为ansible找不到默认
+     inventory文件的路径。
      
 
 二、 openstack 初步认识

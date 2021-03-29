@@ -58,3 +58,5 @@
 # }
 # 此时finished 为1 task已经完成，并得到结果，此时为阻塞。 类似于promise模式
 
+#[defaults]
+#Inventory = /Users/shjin/Desktop/mytest/ansible-learn/inventorys/inventory

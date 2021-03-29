@@ -1,0 +1,2 @@
+echo mystr=${mystr} YES!
+

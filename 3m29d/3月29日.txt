@@ -1,0 +1,107 @@
+1.  开始学习openstack， 远程主机10.250.16.130上已经装好了openstack
+但是用终端测试命令行时报错显示Missing value auth-url required for auth plugin password
+，解决方法是创建文件admin-openrc.sh   ， 内容里面写
+export OS_USERNAME=admin
+export OS_PASSWORD=admin
+export OS_PROJECT_NAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_AUTH_URL=http://10.250.11.111:5000/v3
+export OS_IDENTITY_API_VERSION=3
+保存并退出后执行命令 source admin-openrc.sh，就不出错了
+
+2.  理解 openstack中 endpoint service domain project 等概念
+    2.1 service : 即服务 如 Nova  Glace等组件,可使用命令
+openstack service list 查询 当前已安装的服务，
+在远程主机10.250.16.130 上使用此命令，结果为
++----------------------------------+-----------+-------------+
+| ID                               | Name      | Type        |
++----------------------------------+-----------+-------------+
+| 63a4269ea61a434d9ad8e29f03f5594a | keystone  | identity    |
+| 7e2b51f82b1244f98f4514f5d0537be7 | neutron   | network     |
+| 8952b86da0db4f93ab19c150b1bfab44 | barbican  | key-manager |
+| a922932623c1423fa89b69cdfa5e4426 | nova      | compute     |
+| aafb7073c0b6439094104ea2578c033d | placement | placement   |
+| cc8b5c0671284821b0018e1da426c24a | glance    | image       |
++----------------------------------+-----------+-------------+
+列出当前已安装的组件，有
+keystone(OpenStack Identity Service)是 OpenStack 框架中负责管理身份验证、
+服务规则和服务令牌功能的组件。
+neutron 提供云计算环境下的虚拟网络功能，管理OpenStack环境中所有虚拟网络基础设施（VNI），
+物理网络基础设施（PNI）的接入层。
+barbican 为包含云服务在内的任何环境提供密钥管理功能，通过REST API 提供并管理机密信息、进行安全存储
+最常用的功能是作为密钥生成器
+nova openstack最核心的组件 维护和管理云环境的计算资源
+placement 用于使用、管理、监控整个openstack的系统资源
+glance 是一个提供发现，注册，和下载镜像的服务。Glance 提供了虚拟机镜像的集中存储。
+通过 Glance 的 RESTful API，可以查询镜像元数据、下载镜像。
+
+    2.2 endpoint
+    用来访问和定位某个openstack service 的地址（url），在openstack中，每一个service中都有三种
+Endpoint：Admin、Public、Internal。如果要访问一个service，必须要知道它的endpoint。
+admin使用者为管理员，public使用者为客户端，internal使用者为内部组件之间相互调用
+
+    10.250.16.130主机使用 openstack endpoint list 命令，结果为
+
+    +----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------------------------+
+| ID                               | Region    | Service Name | Service Type | Enabled | Interface | URL                                          |
++----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------------------------+
+| 11fa562c07c046518022ca08e07ee218 | RegionOne | neutron      | network      | True    | internal  | http://10.250.11.111:9696                    |
+| 24497584a29c420cbe21e7466285397f | RegionOne | barbican     | key-manager  | True    | admin     | http://10.250.11.111:9311                    |
+| 414b557aa533437a9185f0d1401ceb1a | RegionOne | placement    | placement    | True    | public    | http://10.250.11.111:8778/placement          |
+| 45e68e91c45848d0af31836d11d33c90 | RegionOne | nova         | compute      | True    | public    | http://10.250.11.111:8774/v2.1/%(tenant_id)s |
+| 5bcf6da8dd1b45efb8f9d222c246a568 | RegionOne | glance       | image        | True    | internal  | http://10.250.11.111:9292                    |
+| 75629cd671e544e4a4881ffcf9fb1126 | RegionOne | barbican     | key-manager  | True    | public    | http://10.250.11.111:9311                    |
+| 7fbb388fc1584b9280a56f003f622f15 | RegionOne | barbican     | key-manager  | True    | internal  | http://10.250.11.111:9311                    |
+| 88a8c979430841f19c375acf539a8935 | RegionOne | keystone     | identity     | True    | public    | http://10.250.11.111:5000/v3                 |
+| 9a321aebc9df44c7ae2da4a392471104 | RegionOne | keystone     | identity     | True    | internal  | http://10.250.11.111:5000/v3                 |
+| a267f11076e344e1bdc9c8be20bcade7 | RegionOne | glance       | image        | True    | public    | http://10.250.11.111:9292                    |
+| a82005a30edb421181f4828e8bb99929 | RegionOne | placement    | placement    | True    | internal  | http://10.250.11.111:8778/placement          |
+| acaf9fbc24284cb3b5e1dbe3266d5fa0 | RegionOne | glance       | image        | True    | admin     | http://10.250.11.111:9292                    |
+| bbd48d6462104331824802fe63178aa9 | RegionOne | keystone     | identity     | True    | admin     | http://10.250.11.111:35357/v3                |
+| bc97fefdf6d54865ab9cc80bcdfe0ec2 | RegionOne | nova         | compute      | True    | internal  | http://10.250.11.111:8774/v2.1/%(tenant_id)s |
+| be0c3e04f805415b952ee93836ba6977 | RegionOne | neutron      | network      | True    | public    | http://10.250.11.111:9696                    |
+| d1064295a4f846a1abe5e1f507ac321d | RegionOne | neutron      | network      | True    | admin     | http://10.250.11.111:9696                    |
+| df96d7fe2a1a4c46840e18e82c3466ad | RegionOne | placement    | placement    | True    | admin     | http://10.250.11.111:8778/placement          |
+| e6b0ca1c2b7e4d9e946ac6723d852cc3 | RegionOne | nova         | compute      | True    | admin     | http://10.250.11.111:8774/v2.1/%(tenant_id)s |
++----------------------------------+-----------+--------------+--------------+---------+-----------+----------------------------------------------+
+
+    2.3 project / tenand
+    IT基础设施资源的集合，比如虚机，卷，镜像等.
+    一个tenant/project是多个用户的集合，openstack用它来定义这个组内用户的访问权限，
+    包括能够访问的虚拟机镜像以及相关资源的使用限制（quota），例如能创建多少个instances,ram限制等。
+    执行命令 openstack project list    结果为
+    +----------------------------------+-------------+
+| ID                               | Name        |
++----------------------------------+-------------+
+| 192807b62b484dc2b9feb515b6e56ee5 | admin       |
+| 1b02b026187d4625bc4addc654c36097 | proj-perf-4 |
+| 3b95a41b4368440a8a30942f69faba6f | proj-perf-1 |
+| 64966ab4b7344f569f914dbe420dd9d3 | services    |
+| 6b7219fe31314b9aabdcd550ad2832dd | proj-perf-3 |
+| 9a8d15574e9f4b2bbb89295fbad2a072 | proj-perf-0 |
+| d86812c1c4bd4855aaf0518fc38a7b8d | demo        |
+| fe88c24bb0174af0953fb5aa2c232e30 | proj-perf-2 |
++----------------------------------+-------------+
+    2.4 domain
+    表示 project 和 user 的集合，在公有云或者私有云中常常表示一个客户
+    openstack domain list 结果为
+    ---------+---------+---------+--------------------+
+| ID      | Name    | Enabled | Description        |
++---------+---------+---------+--------------------+
+| default | Default | True    | The default domain |
++---------+---------+---------+--------------------+
+
+3. openstack horizon
+    openstack的GUI界面，之前学ansible 的时候就用过了，之前还添加过实例
+    只是那时没学openstack，不懂如何创建并附加keypair，登陆进不去
+    3.1 keypair
+        密钥对 用于访问虚拟机 
+        openstack keypair list 查看现有keypair  结果如下
+        +-------------+-------------------------------------------------+
+| Name        | Fingerprint                                     |
++-------------+-------------------------------------------------+
+| js-kp1      | 8a:ed:21:46:d6:59:40:25:66:70:48:8d:61:f5:42:a3 |
+| zong-11-111 | 57:c3:ab:74:b0:66:4d:2a:a1:1e:9e:a7:01:8a:0f:4f |
++-------------+-------------------------------------------------+
+之前在horizon GUI界面中创建了一个密钥叫js-kp1
