@@ -8,8 +8,14 @@ mycreator=shuo.jin
 [myremote:vars]
 creator=Jin Shuo
 ansible_ssh_user=root
+
+[myremote1]
+10.250.74.13
+[myremote1:vars]
+ansible_ssh_user=cirros
 [mytogether]
 127.0.0.1
 10.250.16.130 
+10.250.74.13
 [mytogether:vars]
 creator=shjin

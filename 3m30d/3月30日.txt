@@ -1,0 +1,34 @@
+1. 创建keypair， 并在openstack horizon GUI界面上创建了一个cirros实例
+keypair 可用于访问实例
+
+也可用命令行创建实例，命令为 nova boot
+如 nova boot --flavor m1.tiny --image cirros-0.3.5-x86_64-disk.img --key-name js-kp1 --nic net-name=net-vlan-70 js-ins-test2
+指定的 flavor 为m1.tiny  镜像为cirros  密钥对为js-kp1
+vlan名称为 net-vlan-70 ，创建名称为  js-ins-test2 的虚机
+
+2. flavor : 在Openstack中，虚机硬件模板被称为类型模板(flavor)，
+包括RAM和硬盘大小，CPU核数等。标准安装后有5个缺省的类型。
+使用命令 openstack flavor list ，显示结果为
++--------------------------------------+--------------+-------+------+-----------+-------+-----------+
+| ID                                   | Name         |   RAM | Disk | Ephemeral | VCPUs | Is Public |
++--------------------------------------+--------------+-------+------+-----------+-------+-----------+
+| 1                                    | m1.tiny      |   512 |    1 |         0 |     1 | True      |
+| 2                                    | m1.small     |  2048 |   20 |         0 |     1 | True      |
+| 3                                    | m1.medium    |  4096 |   40 |         0 |     2 | True      |
+| 4                                    | m1.large     |  8192 |   80 |         0 |     4 | True      |
+| 5                                    | m1.xlarge    | 16384 |  160 |         0 |     8 | True      |
+| 69efa257-bcda-45d5-aa17-90057c693b8a | bigip-flavor |  8192 |  120 |         0 |     4 | True      |
++--------------------------------------+--------------+-------+------+-----------+-------+-----------+
+就是horizon中点击创建实例的第三个必选项 实例类型
+选择不同的模版，就会为虚拟机配置不同的cpu核心数 内存大小 磁盘大小。
+
+3. security group  和 group rule
+    security group(安全组):通过 iptables 对 instance 所在计算节点的网络流量进行过滤。
+    group rule： 安全组应用的过滤规则
+4. lbaasv2
+    Load Balancer as a Service v2
+    分为Load Balancer(负载均衡器)、Listener（监听某个端口） 、 
+    Pool（存储members）、 Members（服务器） 、
+    Health Monitor（监视服务器状态）
+    看了repo上  LBaasv2Helper 类
+

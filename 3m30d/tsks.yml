@@ -1,0 +1,10 @@
+- hosts: myremote
+  tasks:
+    - shell: which {{item}}
+      loop: "{{dependlist}}"
+      vars: 
+        dependlist:
+          - openssl
+          - git
+          - ansible
+          
