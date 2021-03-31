@@ -1,0 +1,71 @@
+1.  api测试 使用postman， respoonse文件放到api_test里
+    1.1 keystone v3 api Identity 服务端点为 http://10.250.11.111:5000
+        POST  /v3/auth/tokens    
+        
+        repo中 LBaasV2Helper 类 的 auth_token方法就利用request库访问这个
+        api获取token。
+        需要在POST body中提供parameters，
+        包括password 和scope ，格式如下
+
+{
+            "auth": {
+                "identity": {
+                    "methods": [
+                        "password"
+                    ],
+                    "password": {
+                        "user": {
+                            "name": "admin",
+                            "domain": {
+                                "name": "Default"
+                            },
+                            "password": "admin"
+                        }
+                    }
+                },
+                "scope": {
+                    "project": {
+                        "domain": {
+                            "name": "Default"
+                        },
+                        "name": "admin"
+                    }
+                }
+            }
+ }
+        response header中 X-Subject-Token 对应value为获得的token，在访问其它api时,
+        header 需要携带  X-Auth-Token对应这个值才能通过验证 
+        
+
+    1.2 network api   http://10.250.11.111:9696
+        GET   /v2.0/networks?name=net-vlan-70
+        作用： 查看名称为net-vlan-70的网络信息
+    1.3 compute api   http://10.250.11.111:8774/v2.1
+        GET  /v2.1/servers?name=js-ins-test2
+        作用： 查看名称为js-ins-test2的虚机信息
+    1.4 compute api
+        POST /os-keypairs
+
+        body: 
+        {
+            "keypair" : {
+                "name" : "js-kpair2"
+             }
+        }
+
+        作用 创建一个名称为js-keypair2的密钥对
+
+
+    2. openstack 供应商网络类型（实现虚拟网络的物理机制）
+    有Local Flat Vlan GRE VXlan Geneve
+
+    Flat network：基于不使用 VLAN 的物理网络实现的虚拟网络。每个物理网络最多只能实现一个虚拟网络。
+
+local network（本地网络）：一个只允许在本服务器内通信的虚拟网络，不进行跨服务器的通信。主要用于单节点上测试。
+
+VLAN network（虚拟局域网） ：基于物理 VLAN 网络实现的虚拟网络。共享同一个物理网络的多个 VLAN 网络是相互隔离的，甚至可以使用重叠的 IP 地址空间。
+每个支持 VLAN network 的物理网络可以被视为一个分离的 VLAN trunk，它使用一组独占的 VLAN ID。有效的 VLAN ID 范围是 1 到 4094。
+
+GRE network （通用路由封装网络）：一个使用 GRE 封装网络包的虚拟网络。GRE 封装的数据包基于 IP 路由表来进行路由，因此 GRE network 不和具体的物理网络绑定。
+
+VXLAN network（虚拟可扩展网络）：基于 VXLAN 实现的虚拟网络。同 GRE network 一样， VXLAN network 中 IP 包的路由也基于 IP 路由表，也不和具体的物理网络绑定。

@@ -1,0 +1,18 @@
+{
+  "keypairs": [
+    {
+      "keypair": {
+        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNT9tLBzArhfluk4NLX72huJIJfF8wBTBjc6crSVlYL9OKlb1UvhAzKRCF6T2Yb52jX4vwfM0WPt4JeQolI29TZAnn6kD4xHAjg4ZK3prz/JSbmQv8ICDVSVp92yRhpDwvWYcor5u4ZuqiJJ1zvwh1iojjhNMlgS3mCWlTw7ev0BqK+o/rtggfDujJGmZShCtTJLGXt4Txbhq5gvnyEMISj7Z0kRVzpsa30ymJIKUmfwD8ku8pAsZ6g9AkE7ZBgMB9vy6AEm5pI8354PF3b+pt4GFS+6ZrgKoHWi7IkPubf299ARQKgF43yI3VIp4GbWQ8Q6Vwe6aScX/cJkRWe0KP Generated-by-Nova",
+        "name": "js-kp1",
+        "fingerprint": "8a:ed:21:46:d6:59:40:25:66:70:48:8d:61:f5:42:a3"
+      }
+    },
+    {
+      "keypair": {
+        "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCogLohOYozBzpnbIJ5tZBV0ahs4ielEf1JyjhnFFIHYaTL/sLhOwYMApQFVOK4dy8d355LmzXZDngSB8gPxan5xOoMCLZTMWj4HDPvU1EWJc6NUu6JFzzLgFdkD73/2hYlnAJElJdaIn4DFuu4PkeR9g+Yu7gp/mSUW9bmoHFG8AOZGFqYvP/7vqukd3vjvey5w1o3T+WbbPy5/6T4wGce6JAgVFZjkG+VTGlAyq6r6uoMIeH4bdqFTCgkqOJ+U2a5YoL7jpupm3Hz3yEvjKy+hygoRs8Cnt8GLoZf3QGy3C0R5yxZX37DyHk8CuHUTZwtkcLY52XQ/OomTTqCi4dn Generated-by-Nova",
+        "name": "zong-11-111",
+        "fingerprint": "57:c3:ab:74:b0:66:4d:2a:a1:1e:9e:a7:01:8a:0f:4f"
+      }
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "flavors": [
+    {
+      "id": "1",
+      "links": [
+        {
+          "href": "http://10.250.11.111:8774/v2.1/flavors/1",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.250.11.111:8774/flavors/1",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "m1.tiny"
+    },
+    {
+      "id": "2",
+      "links": [
+        {
+          "href": "http://10.250.11.111:8774/v2.1/flavors/2",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.250.11.111:8774/flavors/2",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "m1.small"
+    },
+    {
+      "id": "3",
+      "links": [
+        {
+          "href": "http://10.250.11.111:8774/v2.1/flavors/3",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.250.11.111:8774/flavors/3",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "m1.medium"
+    },
+    {
+      "id": "4",
+      "links": [
+        {
+          "href": "http://10.250.11.111:8774/v2.1/flavors/4",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.250.11.111:8774/flavors/4",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "m1.large"
+    },
+    {
+      "id": "5",
+      "links": [
+        {
+          "href": "http://10.250.11.111:8774/v2.1/flavors/5",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.250.11.111:8774/flavors/5",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "m1.xlarge"
+    },
+    {
+      "id": "69efa257-bcda-45d5-aa17-90057c693b8a",
+      "links": [
+        {
+          "href": "http://10.250.11.111:8774/v2.1/flavors/69efa257-bcda-45d5-aa17-90057c693b8a",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.250.11.111:8774/flavors/69efa257-bcda-45d5-aa17-90057c693b8a",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "bigip-flavor"
+    }
+  ]
+}

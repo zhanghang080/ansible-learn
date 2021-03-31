@@ -1,0 +1,18 @@
+{
+  "servers": [
+    {
+      "id": "38317b42-7076-48fa-bb02-1370e37ccda4",
+      "links": [
+        {
+          "href": "http://10.250.11.111:8774/v2.1/servers/38317b42-7076-48fa-bb02-1370e37ccda4",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.250.11.111:8774/servers/38317b42-7076-48fa-bb02-1370e37ccda4",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "js-ins-test2"
+    }
+  ]
+}
