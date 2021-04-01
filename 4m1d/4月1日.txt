@@ -1,0 +1,7 @@
+1. 理论学习，研究 neutron 的架构 
+包括 neutron-server   plugin  agent  provider database
+server向外提供网络API， 然后调用 plugin处理， plugin通知agent进行操作
+agent进行具体的操作
+以上三者通过消息队列进行通信。
+
+2. 看了 youkaoshi 上的自测题目，将根据自测题目进行接下来的学习
