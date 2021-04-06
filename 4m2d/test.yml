@@ -1,0 +1,4 @@
+- hosts: myremote
+  tasks: 
+    - yum: 
+        name: gcc-c++
