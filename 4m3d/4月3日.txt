@@ -1,0 +1,13 @@
+1. 看了f5-oslbaasv2-systest repo中，ansible 对 bigip的操作module
+尝试执行 ansible-playbook中的 bigip module
+  create-ltm-pool-members.yml 的ansible playbook操作module： 
+    bigip_pool 创建 lb pool
+    bigip_pool_member 创建 lb member，需要指定pool
+
+
+2. nginx 
+    mac上用 brew 安装了 nginx，
+    开了两个flask 应用，绑定两个端口
+    从而用来测试了一下最基本的反向代理和负载均衡配置
+    反向代理 ： nginx 监听一个端口，把请求发送到upstream定义的服务器组
+    负载均衡： 根据相关算法 将请求分配到服务器组中的服务器上
