@@ -1,0 +1,27 @@
+- hosts: mylocal
+  gather_facts: false
+  tasks:
+    - name: write template
+      template:
+        src: "./nginx.conf.j2"
+        dest: "/Users/shjin/Desktop/mytest/ansible-learn/4m4d/nginx.conf"
+    - name: copy conf to usr dir
+      shell: cp /Users/shjin/Desktop/mytest/ansible-learn/4m4d/nginx.conf /usr/local/etc/nginx/nginx.conf
+      register: shell1Res
+    - debug: 
+        msg: shell1res is {{shell1Res}}
+    - name: reload nginx service
+      shell: export PATH=$PATH:/usr/local/bin;nginx -s reload
+      register: shell2Res
+    - debug: 
+        msg: shell2res is {{shell2Res}}
+  vars:
+    serverGroupName: jinshuo
+    serverIP: 127.0.0.1
+    ports:
+      - 8888
+      - 8889
+    server_name: localhost
+    myUrl: http://jinshuo
+    server1_weight: 3
+    server2_weight: 1

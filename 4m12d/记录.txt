@@ -1,0 +1,166 @@
+1.周五到周一  在
+vmware esxi   https://10.250.11.201/ui/#/host
+https://10.250.11.202/ui/#/host
+上分别部署了两台云科的bigip image。
+部署后 浏览器链接 https://<虚机ip> 即可进入图形界面配置
+
+2.接下来跑systest的脚本
+
+错误 ：数据库连不上    ansible galaxy 下载错误   
+    github 不开vpn就连不上，只能先开vpn 用git module下载必要文件夹，
+    然后在设定when 不跑这个任务
+
+2.1   Developing/Debugging 开发/调试
+
+ansible-playbook -i conf.d/group_and_hosts-11.111 -e @conf.d/vars-zte-private.yml playbooks/ansible-tests.yml
+
+报错，连不上 10.250.11.111，需要配置ssh免密登陆,账号root，密码default。
+以下为成功连上后的结果： 
+PLAY [neutron_servers[0]] ******************************************************
+
+TASK [get mysql root password] *************************************************
+changed: [10.250.11.111]
+
+TASK [debug] *******************************************************************
+ok: [10.250.11.111] => {
+    "msg": "nil"
+}
+
+TASK [download scripts to neutron server] **************************************
+changed: [10.250.11.111]
+
+TASK [clean data from barbican db tables] **************************************
+fatal: [10.250.11.111]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (2003, \"Can't connect to MySQL server on '10.250.22.53' (timed out)\")"}
+
+NO MORE HOSTS LEFT *************************************************************
+
+PLAY RECAP *********************************************************************
+10.250.11.111              : ok=3    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0  
+
+
+2.2   Clean up Resources   清理资源
+
+ansible-playbook -i conf.d/group_and_hosts-11.111 -e @conf.d/vars-zte-private.yml playbooks/clean-bigip-partitions.yml
+该脚本用于清除分区中“ Common”以外的所有bigip配置（也删除分区本身）。
+
+执行结果：
+PLAY [bigips] ******************************************************************
+
+TASK [check bigips be reachable] ***********************************************
+ok: [10.250.70.22]
+
+TASK [collect bigip information from partitions] *******************************
+ok: [10.250.70.22]
+
+TASK [remove objects under partitions] *****************************************
+changed: [10.250.70.22] => (item={'default_route_domain': 0, 'name': 'CORE_192807b62b484dc2b9feb515b6e56ee5', 'full_path': 'CORE_192807b62b484dc2b9feb515b6e56ee5'})
+skipping: [10.250.70.22] => (item={'default_route_domain': 0, 'name': 'Common', 'full_path': 'Common', 'description': 'Repository for system objects and shared objects.'}) 
+
+TASK [executing tmsh load sys config] ******************************************
+changed: [10.250.70.22]
+
+TASK [delete partitions] *******************************************************
+changed: [10.250.70.22] => (item=CORE_192807b62b484dc2b9feb515b6e56ee5)
+skipping: [10.250.70.22] => (item=Common) 
+
+TASK [delete self-ips] *********************************************************
+ok: [10.250.70.22] => (item=local-host-10-250-70-22.openstacklocal-dfedab3d-37b4-4e07-8d1e-f196a8f7d1b4)
+changed: [10.250.70.22] => (item=local-host-10-250-70-22.openstacklocal-d2b107b1-89f5-4182-8c5e-7b0d95f1ad94)
+
+TASK [delete vlans] ************************************************************
+ok: [10.250.70.22] => (item=vlan-74)
+changed: [10.250.70.22] => (item=vlan-70)
+changed: [10.250.70.22] => (item=vlan-73)
+skipping: [10.250.70.22] => (item=vlan72) 
+
+PLAY RECAP *********************************************************************
+10.250.70.22               : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+2.3     Clean up Resources   清理资源
+
+ansible-playbook -i conf.d/group_and_hosts-11.111 -e @conf.d/vars-zte-private.yml playbooks/clean-neutron-resources.yml
+
+
+结果：
+
+PLAY [neutron_servers] *********************************************************
+
+TASK [check the host is reachable] *********************************************
+ok: [10.250.11.111]
+
+TASK [download scripts to neutron server] **************************************
+ok: [10.250.11.111]
+
+TASK [get neutron db info] *****************************************************
+changed: [10.250.11.111] => (item=username)
+changed: [10.250.11.111] => (item=password)
+changed: [10.250.11.111] => (item=hostname)
+changed: [10.250.11.111] => (item=database)
+
+TASK [debug] *******************************************************************
+ok: [10.250.11.111] => (item=username: neutron) => {
+    "msg": "username: neutron"
+}
+ok: [10.250.11.111] => (item=password: 2c537fb79bd24c3f) => {
+    "msg": "password: 2c537fb79bd24c3f"
+}
+ok: [10.250.11.111] => (item=hostname: 10.250.11.111) => {
+    "msg": "hostname: 10.250.11.111"
+}
+ok: [10.250.11.111] => (item=database: neutron) => {
+    "msg": "database: neutron"
+}
+
+TASK [clean data from neutron db tables] ***************************************
+changed: [10.250.11.111]
+
+TASK [get mysql root password] *************************************************
+skipping: [10.250.11.111]
+
+TASK [get mysql root password] *************************************************
+changed: [10.250.11.111]
+
+TASK [get final root db password] **********************************************
+skipping: [10.250.11.111]
+
+TASK [get final root db password] **********************************************
+ok: [10.250.11.111]
+
+TASK [debug] *******************************************************************
+ok: [10.250.11.111] => {
+    "msg": {
+        "changed": true,
+        "cmd": "grep wsrep_sst_auth /etc/my.cnf.d/server.cnf | cut -d ':' -f2",
+        "delta": "0:00:00.005915",
+        "end": "2021-04-12 03:36:59.004334",
+        "failed": false,
+        "rc": 0,
+        "start": "2021-04-12 03:36:58.998419",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "mariadb_password",
+        "stdout_lines": [
+            "mariadb_password"
+        ]
+    }
+}
+
+TASK [clean data from barbican db tables] **************************************
+fatal: [10.250.11.111]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (1045, u\"Access denied for user 'root'@'10.250.11.111' (using password: YES)\")"}
+
+NO MORE HOSTS LEFT *************************************************************
+
+PLAY RECAP *********************************************************************
+10.250.11.111              : ok=8    changed=3    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0
+
+
+2.4   Setup Environment  设置环境
+ansible-playbook -i conf.d/group_and_hosts-11.111 -e @conf.d/vars-zte-private.yml playbooks/ensure-local-env.yml
+
+2.5   Setup Environment  设置环境
+ansible-playbook -i conf.d/group_and_hosts-11.111 -e @conf.d/vars-zte-private.yml playbooks/prepare-keypairs.yml
+
+2.6    Setup Environment  设置环境
+f5-oslbaasv2-systest shjin$ ansible-playbook -i conf.d/group_and_hosts-11.111 -e @conf.d/vars-zte-private.yml playbooks/setup-neutron-lbaas.yml 
+lbaas   load balancer  , health monotor,  pool, listener 的增加删除查看
