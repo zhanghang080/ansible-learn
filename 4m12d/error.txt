@@ -1,0 +1,50 @@
+测试：
+创建 load balancer
+neutron --debug lbaas-loadbalancer-create --name my-lb  subnet-vlan-73
+
+创建 pool
+neutron --debug lbaas-pool-create --name my-pool --loadbalancer my-lb --lb-algorithm ROUND_ROBIN --protocol HTTP
+
+创建 listener
+neutron --debug lbaas-listener-create --name my-listener --loadbalancer my-lb --default-pool my-pool --protocol HTTP --protocol-port 80
+
+创建 health monitor
+neutron --debug lbaas-healthmonitor-create --name my-hm --delay 15 --timeout 15 --max-retries 5 --type PING --pool my-pool
+
+创建 member
+neutron --debug lbaas-member-create --subnet subnet-vlan-73 --address 10.250.26.13 --protocol-port 80 my-pool
+
+neutron --debug lbaas-member-create --subnet subnet-vlan-73 --address 10.250.26.7 --protocol-port 80 my-pool
+
+neutron --debug lbaas-member-create --subnet subnet-vlan-73 --address 10.250.26.8 --protocol-port 80 my-pool
+
+
+
+错误：  bigips   10.250.11.195  10.250.11.196
+
+neutron --debug lbaas-loadbalancer-create --name lb-41860-1618300498  subnet-vlan-73
+
+neutron --debug lbaas-pool-create --name pl-41860-1618300498 --loadbalancer lb-41860-1618300498 --lb-algorithm ROUND_ROBIN --protocol HTTP
+
+neutron --debug lbaas-listener-create --name ls-41860-1618300498 --loadbalancer lb-41860-1618300498 --default-pool pl-41860-1618300498 --protocol HTTP --protocol-port 80
+
+neutron --debug lbaas-healthmonitor-create --name hm-41860-1618300498 --delay 15 --timeout 15 --max-retries 5 --type PING --pool pl-41860-1618300498
+
+neutron --debug lbaas-member-create --subnet subnet-vlan-74 --address 10.250.26.13 --protocol-port 80 pl-41860-1618300498
+
+neutron --debug lbaas-member-create --subnet subnet-vlan-74 --address 10.250.26.7 --protocol-port 80 pl-41860-1618300498
+
+neutron --debug lbaas-member-create --subnet subnet-vlan-74 --address 10.250.26.8 --protocol-port 80 pl-41860-1618300498
+
+
+正确：   bigips     10.250.70.22
+
+neutron --debug lbaas-loadbalancer-create --name lb-47247-1618302786  subnet-vlan-73
+
+neutron --debug lbaas-pool-create --name pl-47247-1618302786 --loadbalancer lb-47247-1618302786 --lb-algorithm ROUND_ROBIN --protocol HTTP
+
+neutron --debug lbaas-listener-create --name ls-47247-1618302786 --loadbalancer lb-47247-1618302786 --default-pool pl-47247-1618302786 --protocol HTTP --protocol-port 80
+
+neutron --debug lbaas-healthmonitor-create --name hm-47247-1618302786 --delay 15 --timeout 15 --max-retries 5 --type PING --pool pl-47247-1618302786
+
+结论  配置文件下 [bigips]   只能写1个ip  写多了就报错

@@ -1,0 +1,96 @@
+PLAY [neutron_servers] *********************************************************
+
+TASK [set_fact] ****************************************************************
+ok: [10.250.11.111]
+
+TASK [set timestamp variable] **************************************************
+changed: [10.250.11.111]
+
+TASK [set neutron resource names] **********************************************
+ok: [10.250.11.111]
+
+TASK [basic test: create loadbalancer] *****************************************
+changed: [10.250.11.111] => (item=neutron --debug lbaas-loadbalancer-create --name lb-68647-1618307421  subnet-vlan-73)
+
+TASK [basic test: create lbaasv2 resources] ************************************
+changed: [10.250.11.111] => (item=neutron --debug lbaas-pool-create --name pl-68647-1618307421 --loadbalancer lb-68647-1618307421 --lb-algorithm ROUND_ROBIN --protocol HTTP)
+changed: [10.250.11.111] => (item=neutron --debug lbaas-listener-create --name ls-68647-1618307421 --loadbalancer lb-68647-1618307421 --default-pool pl-68647-1618307421 --protocol HTTP --protocol-port 80 )
+changed: [10.250.11.111] => (item=neutron --debug lbaas-healthmonitor-create --name hm-68647-1618307421 --delay 15 --timeout 15 --max-retries 5 --type PING --pool pl-68647-1618307421)
+
+TASK [basic test: create members under pool pl-68647-1618307421] ***************
+changed: [10.250.11.111] => (item=10.250.26.13)
+changed: [10.250.11.111] => (item=10.250.26.7)
+changed: [10.250.11.111] => (item=10.250.26.8)
+
+TASK [basic test: waiting for resource created] ********************************
+changed: [10.250.11.111]
+
+TASK [basic test: get vip address for test] ************************************
+changed: [10.250.11.111]
+
+TASK [debug] *******************************************************************
+ok: [10.250.11.111] => {
+    "vip_address.stdout": "10.250.73.13"
+}
+
+TASK [basic test: get resource ids] ********************************************
+changed: [10.250.11.111] => (item=neutron lbaas-loadbalancer-show lb-68647-1618307421)
+changed: [10.250.11.111] => (item=neutron lbaas-pool-show pl-68647-1618307421)
+changed: [10.250.11.111] => (item=neutron lbaas-listener-show ls-68647-1618307421)
+changed: [10.250.11.111] => (item=neutron lbaas-healthmonitor-show hm-68647-1618307421)
+changed: [10.250.11.111] => (item=neutron lbaas-member-list pl-68647-1618307421)
+changed: [10.250.11.111] => (item=openstack project show $OS_PROJECT_NAME)
+
+TASK [set_fact] ****************************************************************
+ok: [10.250.11.111]
+
+TASK [debug] *******************************************************************
+ok: [10.250.11.111] => (item=project_id:192807b62b484dc2b9feb515b6e56ee5) => {
+    "msg": "project_id:192807b62b484dc2b9feb515b6e56ee5"
+}
+ok: [10.250.11.111] => (item=loadbalancer_id: ffbbf00a-d335-4701-8898-ee0ad16c57a5) => {
+    "msg": "loadbalancer_id: ffbbf00a-d335-4701-8898-ee0ad16c57a5"
+}
+ok: [10.250.11.111] => (item=pool_id: a58068ad-68dc-4929-8afc-3ef239c4620b) => {
+    "msg": "pool_id: a58068ad-68dc-4929-8afc-3ef239c4620b"
+}
+ok: [10.250.11.111] => (item=listener_id: 5a184e5e-cb2d-4973-90fc-cf7bc271c215) => {
+    "msg": "listener_id: 5a184e5e-cb2d-4973-90fc-cf7bc271c215"
+}
+ok: [10.250.11.111] => (item=healthmonitor_id: 6c4d02db-fccf-4787-a103-42265fc1aa4f) => {
+    "msg": "healthmonitor_id: 6c4d02db-fccf-4787-a103-42265fc1aa4f"
+}
+ok: [10.250.11.111] => (item=member_ids: ['70105852-33e4-449b-81e4-a197d331e592', 'cef7b80d-de5a-41d3-99e9-868c0c8756f1', '11b586dd-a2e5-4062-a35c-feab5bdf10ec']) => {
+    "msg": "member_ids: ['70105852-33e4-449b-81e4-a197d331e592', 'cef7b80d-de5a-41d3-99e9-868c0c8756f1', '11b586dd-a2e5-4062-a35c-feab5bdf10ec']"
+}
+
+TASK [collect bigip device info] ***********************************************
+ok: [10.250.11.111] => (item=10.250.11.195)
+
+TASK [assert resources are created on bigips] **********************************
+ok: [10.250.11.111] => (item=10.250.11.195)
+
+TASK [Check HTTP 80 is reachable] **********************************************
+skipping: [10.250.11.111] => (item=10.250.27.104) 
+
+TASK [update http_profile insert_x_forwarded_for to disabled] ******************
+changed: [10.250.11.111] => (item=None)
+changed: [10.250.11.111]
+
+TASK [update listener description to ls-68647-1618307421-updated manually on bigip] ***
+changed: [10.250.11.111] => (item=10.250.11.195)
+
+TASK [update listener --connection-limit with neutron command line] ************
+changed: [10.250.11.111] => (item=neutron lbaas-listener-update 5a184e5e-cb2d-4973-90fc-cf7bc271c215 --connection-limit  200)
+changed: [10.250.11.111] => (item=echo)
+
+TASK [get virtual_server and http_profile info after neutron update] ***********
+ok: [10.250.11.111] => (item=10.250.11.195)
+
+TASK [debug bigip_infos] *******************************************************
+fatal: [10.250.11.111]: FAILED! => {"msg": "You need to install \"jmespath\" prior to running json_query filter"}
+
+NO MORE HOSTS LEFT *************************************************************
+
+PLAY RECAP *********************************************************************
+10.250.11.111              : ok=18   changed=10   unreachable=0    failed=1    skipped=1    rescued=0    ignored=0 

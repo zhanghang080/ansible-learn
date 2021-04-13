@@ -1,0 +1,42 @@
+ansible_job_id: "552030283771.56901"
+ansible_loop_var: item
+attempts: 1
+changed: true
+cmd: >
+  cmd="ansible-playbook -i ../conf.d/group_and_hosts-11.111 -e
+  @../conf.d/vars-zte-private.yml ../testcases/dev_test.yml -t ipv6"
+
+  echo $cmd > ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/ipv6.log
+
+  date >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/ipv6.log
+
+  start=`date +%s`
+
+  $cmd >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/ipv6.log
+
+  result=$?
+
+  end=`date +%s`
+
+  echo $(($end - $start)) >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/ipv6.log
+
+  exit $result
+delta: 0:00:03.029539
+end: 2021-04-13 17:22:26.857186
+finished: 1
+item:
+  ansible_job_id: "552030283771.56901"
+  ansible_loop_var: item
+  changed: true
+  failed: false
+  finished: 0
+  item: ipv6
+  results_file: /Users/shjin/.ansible_async/552030283771.56901
+  started: 1
+msg: non-zero return code
+rc: 2
+start: 2021-04-13 17:22:23.827647
+stderr: ""
+stderr_lines: []
+stdout: ""
+stdout_lines: []

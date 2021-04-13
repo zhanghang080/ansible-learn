@@ -1,0 +1,42 @@
+ansible_job_id: "799013119324.56707"
+ansible_loop_var: item
+attempts: 1
+changed: true
+cmd: >
+  cmd="ansible-playbook -i ../conf.d/group_and_hosts-11.111 -e
+  @../conf.d/vars-zte-private.yml ../testcases/dev_test.yml -t persist"
+
+  echo $cmd > ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/persist.log
+
+  date >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/persist.log
+
+  start=`date +%s`
+
+  $cmd >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/persist.log
+
+  result=$?
+
+  end=`date +%s`
+
+  echo $(($end - $start)) >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/persist.log
+
+  exit $result
+delta: 0:02:33.074797
+end: 2021-04-13 17:24:53.792987
+finished: 1
+item:
+  ansible_job_id: "799013119324.56707"
+  ansible_loop_var: item
+  changed: true
+  failed: false
+  finished: 0
+  item: persist
+  results_file: /Users/shjin/.ansible_async/799013119324.56707
+  started: 1
+msg: non-zero return code
+rc: 2
+start: 2021-04-13 17:22:20.718190
+stderr: ""
+stderr_lines: []
+stdout: ""
+stdout_lines: []

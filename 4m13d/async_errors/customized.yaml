@@ -1,0 +1,42 @@
+ansible_job_id: "646694849043.56778"
+ansible_loop_var: item
+attempts: 1
+changed: true
+cmd: >
+  cmd="ansible-playbook -i ../conf.d/group_and_hosts-11.111 -e
+  @../conf.d/vars-zte-private.yml ../testcases/dev_test.yml -t customized"
+
+  echo $cmd > ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/customized.log
+
+  date >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/customized.log
+
+  start=`date +%s`
+
+  $cmd >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/customized.log
+
+  result=$?
+
+  end=`date +%s`
+
+  echo $(($end - $start)) >> ../logs/20210413172135--group_and_hosts-11.111--vars-zte-private.yml/customized.log
+
+  exit $result
+delta: 0:02:18.282171
+end: 2021-04-13 17:24:40.108443
+finished: 1
+item:
+  ansible_job_id: "646694849043.56778"
+  ansible_loop_var: item
+  changed: true
+  failed: false
+  finished: 0
+  item: customized
+  results_file: /Users/shjin/.ansible_async/646694849043.56778
+  started: 1
+msg: non-zero return code
+rc: 2
+start: 2021-04-13 17:22:21.826272
+stderr: ""
+stderr_lines: []
+stdout: ""
+stdout_lines: []

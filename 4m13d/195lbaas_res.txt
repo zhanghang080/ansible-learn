@@ -57,10 +57,10 @@ TASK [migrate neutron db tables] ***********************************************
 changed: [10.250.11.111]
 
 TASK [download f5-* packages] **************************************************
-changed: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-sdk-3.0.11-1.el7.noarch.rpm)
-changed: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-icontrol-rest-1.3.9-1.el7.noarch.rpm)
-changed: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-openstack-lbaasv2-driver-312.4.4-1.el7.noarch.rpm)
-changed: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-openstack-agent-9.8.45-1.el7.noarch.rpm)
+ok: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-sdk-3.0.11-1.el7.noarch.rpm)
+ok: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-icontrol-rest-1.3.9-1.el7.noarch.rpm)
+ok: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-openstack-lbaasv2-driver-312.4.4-1.el7.noarch.rpm)
+ok: [10.250.11.111] => (item=http://10.250.11.185/f5-packages/f5-openstack-agent-9.8.45-1.el7.noarch.rpm)
 
 TASK [download f5-* packages] **************************************************
 skipping: [10.250.11.111] => (item=https://github.com/F5Networks/f5-common-python/releases/download/v3.0.11/f5-sdk-3.0.11-1.el7.noarch.rpm) 
@@ -92,7 +92,7 @@ changed: [10.250.11.111]
 
 TASK [generate neutron related files] ******************************************
 changed: [10.250.11.111] => (item={'src': 'neutron.conf.j2', 'dest': '/tmp/neutron.conf'})
-changed: [10.250.11.111] => (item={'src': 'neutron_lbaas.conf.j2', 'dest': '/tmp/neutron_lbaas.conf'})
+ok: [10.250.11.111] => (item={'src': 'neutron_lbaas.conf.j2', 'dest': '/tmp/neutron_lbaas.conf'})
 ok: [10.250.11.111] => (item={'src': 'neutron-server.service.j2', 'dest': '/usr/lib/systemd/system/neutron-server.service'})
 
 TASK [generate f5-openstack-agent-xx.ini] **************************************
@@ -129,17 +129,14 @@ TASK [set neutron resource names] **********************************************
 ok: [10.250.11.111]
 
 TASK [smoking test: create loadbalancer] ***************************************
-changed: [10.250.11.111] => (item=neutron --debug lbaas-loadbalancer-create --name lb-28402-1618216997  subnet-vlan-73)
+changed: [10.250.11.111] => (item=neutron --debug lbaas-loadbalancer-create --name lb-55616-1618305272  subnet-vlan-73)
 
 TASK [smoking test: create lbaasv2 resources] **********************************
+changed: [10.250.11.111] => (item=neutron --debug lbaas-pool-create --name pl-55616-1618305272 --loadbalancer lb-55616-1618305272 --lb-algorithm ROUND_ROBIN --protocol HTTP)
+changed: [10.250.11.111] => (item=neutron --debug lbaas-listener-create --name ls-55616-1618305272 --loadbalancer lb-55616-1618305272 --default-pool pl-55616-1618305272 --protocol HTTP --protocol-port 80 )
+changed: [10.250.11.111] => (item=neutron --debug lbaas-healthmonitor-create --name hm-55616-1618305272 --delay 15 --timeout 15 --max-retries 5 --type PING --pool pl-55616-1618305272)
 
-                               
-
-changed: [10.250.11.111] => (item=neutron --debug lbaas-pool-create --name pl-28402-1618216997 --loadbalancer lb-28402-1618216997 --lb-algorithm ROUND_ROBIN --protocol HTTP)
-changed: [10.250.11.111] => (item=neutron --debug lbaas-listener-create --name ls-28402-1618216997 --loadbalancer lb-28402-1618216997 --default-pool pl-28402-1618216997 --protocol HTTP --protocol-port 80 )
-changed: [10.250.11.111] => (item=neutron --debug lbaas-healthmonitor-create --name hm-28402-1618216997 --delay 15 --timeout 15 --max-retries 5 --type PING --pool pl-28402-1618216997)
-
-TASK [smoking test: create members under pool pl-28402-1618216997] *************
+TASK [smoking test: create members under pool pl-55616-1618305272] *************
 changed: [10.250.11.111] => (item=10.250.26.13)
 changed: [10.250.11.111] => (item=10.250.26.7)
 changed: [10.250.11.111] => (item=10.250.26.8)
@@ -152,15 +149,15 @@ changed: [10.250.11.111]
 
 TASK [debug] *******************************************************************
 ok: [10.250.11.111] => {
-    "vip_address.stdout": "10.250.73.3"
+    "vip_address.stdout": "10.250.73.22"
 }
 
 TASK [smoking test: get resource ids] ******************************************
-changed: [10.250.11.111] => (item=neutron lbaas-loadbalancer-show lb-28402-1618216997)
-changed: [10.250.11.111] => (item=neutron lbaas-pool-show pl-28402-1618216997)
-changed: [10.250.11.111] => (item=neutron lbaas-listener-show ls-28402-1618216997)
-changed: [10.250.11.111] => (item=neutron lbaas-healthmonitor-show hm-28402-1618216997)
-changed: [10.250.11.111] => (item=neutron lbaas-member-list pl-28402-1618216997)
+changed: [10.250.11.111] => (item=neutron lbaas-loadbalancer-show lb-55616-1618305272)
+changed: [10.250.11.111] => (item=neutron lbaas-pool-show pl-55616-1618305272)
+changed: [10.250.11.111] => (item=neutron lbaas-listener-show ls-55616-1618305272)
+changed: [10.250.11.111] => (item=neutron lbaas-healthmonitor-show hm-55616-1618305272)
+changed: [10.250.11.111] => (item=neutron lbaas-member-list pl-55616-1618305272)
 changed: [10.250.11.111] => (item=openstack project show $OS_PROJECT_NAME)
 
 TASK [set_fact] ****************************************************************
@@ -170,39 +167,39 @@ TASK [debug] *******************************************************************
 ok: [10.250.11.111] => (item=project_id:192807b62b484dc2b9feb515b6e56ee5) => {
     "msg": "project_id:192807b62b484dc2b9feb515b6e56ee5"
 }
-ok: [10.250.11.111] => (item=loadbalancer_id: 6d907c03-25b6-4e5e-b420-1f2387688857) => {
-    "msg": "loadbalancer_id: 6d907c03-25b6-4e5e-b420-1f2387688857"
+ok: [10.250.11.111] => (item=loadbalancer_id: c01acc64-3e64-47f7-a8d7-d7a961aa3d3f) => {
+    "msg": "loadbalancer_id: c01acc64-3e64-47f7-a8d7-d7a961aa3d3f"
 }
-ok: [10.250.11.111] => (item=pool_id: cb13df40-2667-4b03-b7b5-37dbed52a8f2) => {
-    "msg": "pool_id: cb13df40-2667-4b03-b7b5-37dbed52a8f2"
+ok: [10.250.11.111] => (item=pool_id: 5ad56cc3-d12a-48ee-b363-2980aa58bc5b) => {
+    "msg": "pool_id: 5ad56cc3-d12a-48ee-b363-2980aa58bc5b"
 }
-ok: [10.250.11.111] => (item=listener_id: 64a2c8d3-03c1-4a53-ba20-7524a3f21319) => {
-    "msg": "listener_id: 64a2c8d3-03c1-4a53-ba20-7524a3f21319"
+ok: [10.250.11.111] => (item=listener_id: 3a069dca-7a14-41b0-8cc0-118321a0690c) => {
+    "msg": "listener_id: 3a069dca-7a14-41b0-8cc0-118321a0690c"
 }
-ok: [10.250.11.111] => (item=healthmonitor_id: 382e81e9-53ae-4c59-a2f4-60323365d249) => {
-    "msg": "healthmonitor_id: 382e81e9-53ae-4c59-a2f4-60323365d249"
+ok: [10.250.11.111] => (item=healthmonitor_id: a4640bf6-09e5-47b3-9445-7a979f5567f8) => {
+    "msg": "healthmonitor_id: a4640bf6-09e5-47b3-9445-7a979f5567f8"
 }
-ok: [10.250.11.111] => (item=member_ids: ['0324ca8d-8084-447f-8b96-7ccd02b906f0', '84454eab-a16f-4c68-be53-a0bece5e018b', 'fb806727-050b-480c-b988-f8662e5f562f']) => {
-    "msg": "member_ids: ['0324ca8d-8084-447f-8b96-7ccd02b906f0', '84454eab-a16f-4c68-be53-a0bece5e018b', 'fb806727-050b-480c-b988-f8662e5f562f']"
+ok: [10.250.11.111] => (item=member_ids: ['c2e88b07-318a-4c77-8175-14c79f698a20', '9d1235f9-424e-4d9e-bbe9-db741ee221be', 'ecbeadf4-4cb7-49cb-ac67-d349d734c4b9']) => {
+    "msg": "member_ids: ['c2e88b07-318a-4c77-8175-14c79f698a20', '9d1235f9-424e-4d9e-bbe9-db741ee221be', 'ecbeadf4-4cb7-49cb-ac67-d349d734c4b9']"
 }
 
 TASK [collect bigip device info] ***********************************************
-ok: [10.250.11.111] => (item=10.250.70.22)
+ok: [10.250.11.111] => (item=10.250.11.195)
 
 TASK [assert resources are created on bigips] **********************************
-ok: [10.250.11.111] => (item=10.250.70.22)
+ok: [10.250.11.111] => (item=10.250.11.195)
 
 TASK [smoking test: delete lbaasv2 resources] **********************************
-changed: [10.250.11.111] => (item=neutron lbaas-healthmonitor-delete hm-28402-1618216997)
-changed: [10.250.11.111] => (item=neutron lbaas-pool-delete pl-28402-1618216997)
-changed: [10.250.11.111] => (item=neutron lbaas-listener-delete ls-28402-1618216997)
-changed: [10.250.11.111] => (item=neutron lbaas-loadbalancer-delete lb-28402-1618216997)
+changed: [10.250.11.111] => (item=neutron lbaas-healthmonitor-delete hm-55616-1618305272)
+changed: [10.250.11.111] => (item=neutron lbaas-pool-delete pl-55616-1618305272)
+changed: [10.250.11.111] => (item=neutron lbaas-listener-delete ls-55616-1618305272)
+changed: [10.250.11.111] => (item=neutron lbaas-loadbalancer-delete lb-55616-1618305272)
 
 TASK [collect bigip device info] ***********************************************
-ok: [10.250.11.111] => (item=10.250.70.22)
+ok: [10.250.11.111] => (item=10.250.11.195)
 
 TASK [assert resources are removed on bigips] **********************************
-ok: [10.250.11.111] => (item=10.250.70.22)
+ok: [10.250.11.111] => (item=10.250.11.195)
 
 PLAY RECAP *********************************************************************
-10.250.11.111              : ok=42   changed=25   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0   
+10.250.11.111              : ok=42   changed=24   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0  
