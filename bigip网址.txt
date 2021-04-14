@@ -1,0 +1,15 @@
+https://10.250.11.191 
+
+admin
+P@ssw0rd123
+
+bigIp:
+root
+Gouliguojia1qazw
+
+
+mysql password:
+CZgjoj0ac9
+
+10.251.13.59 password :
+mfaWxhNKjtQ8GfFDf9agr6HsY

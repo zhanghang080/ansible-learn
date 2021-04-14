@@ -1,0 +1,465 @@
+ansible_loop_var: item
+changed: true
+cmd: >
+  source /home/heat-admin/overcloudrc-v2.0 && neutron --debug
+  lbaas-loadbalancer-create --name lb-81696-1618384661  10.251.27.0/24
+delta: 0:00:04.245923
+end: 2021-04-14 15:17:45.996826
+item: neutron --debug lbaas-loadbalancer-create --name
+  lb-81696-1618384661  10.251.27.0/24
+msg: non-zero return code
+rc: 1
+start: 2021-04-14 15:17:41.750903
+stderr: >-
+  neutron CLI is deprecated and will be removed in the future. Use openstack CLI
+  instead.
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('token_endpoint = openstackclient.api.auth_plugin:TokenEndpoint')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v1password = swiftclient.authv1:PasswordLoader')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('aodh-noauth = aodhclient.noauth:AodhNoAuthLoader')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-basic = gnocchiclient.auth:GnocchiBasicLoader')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-noauth = gnocchiclient.auth:GnocchiNoAuthLoader')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v2token = keystoneauth1.loading._plugins.identity.v2:Token')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('none = keystoneauth1.loading._plugins.noauth:NoAuth')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3oauth1 = keystoneauth1.extras.oauth1._loading:V3OAuth1')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('admin_token = keystoneauth1.loading._plugins.admin_token:AdminToken')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcauthcode = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAuthorizationCode')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v2password = keystoneauth1.loading._plugins.identity.v2:Password')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3samlpassword = keystoneauth1.extras._saml2._loading:Saml2Password')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3password = keystoneauth1.loading._plugins.identity.v3:Password')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3adfspassword = keystoneauth1.extras._saml2._loading:ADFSPassword')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcaccesstoken = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAccessToken')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcpassword = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectPassword')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3kerberos = keystoneauth1.extras.kerberos._loading:Kerberos')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('token = keystoneauth1.loading._plugins.identity.generic:Token')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcclientcredentials = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectClientCredentials')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3tokenlessauth = keystoneauth1.loading._plugins.identity.v3:TokenlessAuth')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3token = keystoneauth1.loading._plugins.identity.v3:Token')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3totp = keystoneauth1.loading._plugins.identity.v3:TOTP')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('password = keystoneauth1.loading._plugins.identity.generic:Password')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('v3fedkerb = keystoneauth1.extras.kerberos._loading:MappedKerberos')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('noauth = cinderclient.contrib.noauth:CinderNoAuthLoader')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('table = cliff.formatters.table:TableFormatter')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('json = cliff.formatters.json_format:JSONFormatter')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('shell = cliff.formatters.shell:ShellFormatter')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('value = cliff.formatters.value:ValueFormatter')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('yaml = cliff.formatters.yaml_format:YAMLFormatter')
+
+  DEBUG: neutronclient.neutron.v2_0.lb.v2.loadbalancer.CreateLoadBalancer run(Namespace(admin_state=True, bandwidth=None, columns=[], description=None, fit_width=False, flavor=None, formatter='table', max_width=0, name=u'lb-81696-1618384661', noindent=False, prefix='', print_empty=False, provider=None, request_format='json', tenant_id=None, variables=[], vip_address=None, vip_subnet=u'10.251.27.0/24'))
+
+  DEBUG: keystoneauth.session REQ: curl -g -i -X GET http://10.251.13.59:5000/v3 -H "Accept: application/json" -H "User-Agent: neutron keystoneauth1/3.1.0 python-requests/2.14.2 CPython/2.7.5"
+
+  DEBUG: keystoneauth.session RESP: [200] Date: Wed, 14 Apr 2021 07:17:42 GMT Server: Apache Vary: X-Auth-Token,Accept-Encoding x-openstack-request-id: req-88e776ed-63ed-4fc1-9845-1f8b2631c69d Content-Encoding: gzip Content-Length: 195 Content-Type: application/json 
+
+  RESP BODY: {"version": {"status": "stable", "updated": "2017-02-22T00:00:00Z", "media-types": [{"base": "application/json", "type": "application/vnd.openstack.identity-v3+json"}], "id": "v3.8", "links": [{"href": "http://10.251.13.59:5000/v3/", "rel": "self"}]}}
+
+
+  DEBUG: keystoneauth.session GET call to None for http://10.251.13.59:5000/v3 used request id req-88e776ed-63ed-4fc1-9845-1f8b2631c69d
+
+  DEBUG: keystoneauth.identity.v3.base Making authentication request to http://10.251.13.59:5000/v3/auth/tokens
+
+  DEBUG: keystoneauth.identity.v3.base {"token": {"is_domain": false, "methods": ["password"], "roles": [{"id": "1449670a2eb1432788867e4965010317", "name": "admin"}], "expires_at": "2021-04-14T08:17:43.000000Z", "project": {"domain": {"id": "default", "name": "Default"}, "id": "5fecf9bdd7b84e1eb9f08b14023400c6", "name": "admin"}, "catalog": [{"endpoints": [{"url": "http://10.251.12.57:9311/", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "6457946a7666416da0d8c9497f51d400"}, {"url": "http://10.251.13.59:9311/", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "6de1e417683b45458ca0af6cbebceedf"}, {"url": "http://10.251.12.57:9311/", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "c9f3a57ff4fe43f5b505815dba2e71cc"}], "type": "key-manager", "id": "08550763a90a4c268a3e048a4e998b8a", "name": "barbican"}, {"endpoints": [{"url": "http://10.251.12.57:8977", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "287294cc41894ab0aa69fb6279100dcb"}, {"url": "http://10.251.12.57:8977", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "628031a64b9c458fb2c8ca51cca6f5bc"}, {"url": "http://10.251.13.59:8977", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "faae0093dfcc418ea9eb14e1f3091f9a"}], "type": "event", "id": "0da4511cd627452bbe9d25a7492f9f00", "name": "panko"}, {"endpoints": [{"url": "http://10.251.12.57:8776/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "13bd8e98733442a6bba7c16297d1dbeb"}, {"url": "http://10.251.13.59:8776/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "3e34394ffc964f688a40d8261c3a8841"}, {"url": "http://10.251.12.57:8776/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "d45a08a4f1c1455e9039460cc054e61d"}], "type": "volume", "id": "1a3d05b8aa4a4752adcf658872684a4e", "name": "cinder"}, {"endpoints": [{"url": "http://10.251.12.57:9696", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "15895dcddf7d4aaf9c6b926b1ec3e91d"}, {"url": "http://10.251.13.59:9696", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "3ed4d943017c47c6892b79283b765e33"}, {"url": "http://10.251.12.57:9696", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "a2a8465d50fb4538b7fd2b3a994fb141"}], "type": "network", "id": "1b1433f0a4d143beb43f610ad8809bf9", "name": "neutron"}, {"endpoints": [{"url": "http://10.251.12.57:8000/v1", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "2b8d61d17989485ca49b358091e323e5"}, {"url": "http://10.251.13.59:8000/v1", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "516742ef82a24782af974de0033ba3cf"}, {"url": "http://10.251.12.57:8000/v1", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "85bb5eaceb6e4234ba299389300106bb"}], "type": "cloudformation", "id": "268db052833f4578a61a86fd1792d215", "name": "heat-cfn"}, {"endpoints": [{"url": "http://10.251.13.59:5000", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "25a6f6994c0e425aace5ba161d132f54"}, {"url": "http://10.251.12.57:5000", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "c4119d36ec26441bb40b3995463145a1"}, {"url": "http://10.251.11.39:35357", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "f1dbec41441f44e989353fd54fcd69b2"}], "type": "identity", "id": "29a2dfe6407942d2a17ffb7cb9ad3e4f", "name": "keystone"}, {"endpoints": [{"url": "http://10.251.12.57:8776/v3/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "5c71594ac3b14fe6976f7ea3a48cb1e6"}, {"url": "http://10.251.12.57:8776/v3/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "9f569a5ef4de43c983df4ec4b64ba3a2"}, {"url": "http://10.251.13.59:8776/v3/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "f46db1fa29784651bde3a5fdc4c44fa6"}], "type": "volumev3", "id": "2cc66d84ee8a489483f755123f8c83f0", "name": "cinderv3"}, {"endpoints": [{"url": "http://10.251.12.57:8776/v2/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "61677cd14034460387197a1a0e081de8"}, {"url": "http://10.251.12.57:8776/v2/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "7e9a5722d52249509fd395f09ec4739e"}, {"url": "http://10.251.13.59:8776/v2/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "e9edb65ca5384f2fb870bc67cfee3f6e"}], "type": "volumev2", "id": "6d745a36f71945e8a3d14da569a1973a", "name": "cinderv2"}, {"endpoints": [{"url": "http://10.251.12.57:8004/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "001bf1fced374d1f83cc30e14f3f6785"}, {"url": "http://10.251.12.57:8004/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "5b51ea448a4848838ba34717f6153940"}, {"url": "http://10.251.13.59:8004/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "a085a15d761b4f0a9e6713894ff70d91"}], "type": "orchestration", "id": "7325f20e24af4c81bb6151e636d5ea9d", "name": "heat"}, {"endpoints": [{"url": "http://10.251.13.59:8042", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "0db59961610d444f840fe74aa5d494bc"}, {"url": "http://10.251.12.57:8042", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "2b40066ea2b143f68d87838670c41a8d"}, {"url": "http://10.251.12.57:8042", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "3ecee3fb4d874c76bd06c25f1ec42ce5"}], "type": "alarming", "id": "9a89f6f5af58460e97d74a6fd251a214", "name": "aodh"}, {"endpoints": [{"url": "http://10.251.12.57:9292", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "0436875b14e546ccb287bf257aa0b8de"}, {"url": "http://10.251.13.59:9292", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "7aced10a931d4434968b267fb99e80db"}, {"url": "http://10.251.12.57:9292", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "bcccacab150c4e4bb16e6121a1b097a4"}], "type": "image", "id": "b97bbe5a17ab435392bb51615bb785d3", "name": "glance"}, {"endpoints": [], "type": "metering", "id": "c3ab4c7f9c9f45d09a45d5246b282d22", "name": "ceilometer"}, {"endpoints": [{"url": "http://10.251.12.57:8041", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "6702cc2d026d40f591e40da6e8d759e7"}, {"url": "http://10.251.13.59:8041", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "9b1a80425f234915aa2b1dcea3ecd87d"}, {"url": "http://10.251.12.57:8041", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "bbb1fa4a4a904cf9bc82891f59a06a0e"}], "type": "metric", "id": "d4647cc968b945a387ca0782eb7cd02c", "name": "gnocchi"}, {"endpoints": [{"url": "http://10.251.12.57:8774/v2.1", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "185ffde3301e4cb68adc3b90dc4a09fd"}, {"url": "http://10.251.12.57:8774/v2.1", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "536d7296cd144fd992469ef850f5a9cb"}, {"url": "http://10.251.13.59:8774/v2.1", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "62043a407a144675999d2db8c166b95b"}], "type": "compute", "id": "d85ca8657af14e8b93eec150c1c08c08", "name": "nova"}, {"endpoints": [{"url": "http://10.251.12.57:8778/placement", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "0f0d264a55ed48e18780dcdc03f76c76"}, {"url": "http://10.251.13.59:8778/placement", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "a036bcdcfe5b4545b280f23d79f2e760"}, {"url": "http://10.251.12.57:8778/placement", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "d1667f8f7dcf481ca8c8ccb326a52423"}], "type": "placement", "id": "f224a97234474c2c8169d4275fc0643c", "name": "placement"}, {"endpoints": [{"url": "http://10.251.17.51:8080/v1/AUTH_5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "internal", "region": "regionOne", "region_id": "regionOne", "id": "4a4ac202a83d458da0bee1084f9d2341"}, {"url": "http://10.251.13.59:8080/v1/AUTH_5fecf9bdd7b84e1eb9f08b14023400c6", "interface": "public", "region": "regionOne", "region_id": "regionOne", "id": "9c3930799ead462ea554cb0bad5ea7bf"}, {"url": "http://10.251.17.51:8080", "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id": "9c5cb9079266409e8bd804af1b98d2f0"}], "type": "object-store", "id": "faaaf4ac52d94316b26e3b99053ee135", "name": "swift"}], "user": {"domain": {"id": "default", "name": "Default"}, "password_expires_at": null, "name": "admin", "id": "c7a985ae0f674b7cb0d6d550b0245105"}, "audit_ids": ["2xOraHyNQSW8ycL3ViTi1Q"], "issued_at": "2021-04-14T07:17:43.000000Z"}}
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('bgpvpn = networking_bgpvpn.neutronclient.neutron.v2_0.bgpvpn.bgpvpn')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('l2_gateway_connection = networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway_connection')
+
+  DEBUG: stevedore.extension found extension EntryPoint.parse('l2_gateway = networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway')
+
+  DEBUG: keystoneauth.session REQ: curl -g -i -X GET http://10.251.13.59:9696/v2.0/subnets?fields=id&name=10.251.27.0%2F24 -H "User-Agent: python-neutronclient" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}27fdcbb965d792e19c16fe852e01fe405fe8123b"
+
+  DEBUG: keystoneauth.session RESP: [200] Content-Type: application/json Content-Length: 59 X-Openstack-Request-Id: req-1d833001-6ba6-4ca7-88cf-f0582b4e0511 Date: Wed, 14 Apr 2021 07:17:45 GMT 
+
+  RESP BODY: {"subnets":[{"id":"7df6411d-1fc7-4d6c-9466-b043028884cf"}]}
+
+
+  DEBUG: keystoneauth.session GET call to network for http://10.251.13.59:9696/v2.0/subnets?fields=id&name=10.251.27.0%2F24 used request id req-1d833001-6ba6-4ca7-88cf-f0582b4e0511
+
+  DEBUG: keystoneauth.session REQ: curl -g -i -X POST http://10.251.13.59:9696/v2.0/lbaas/loadbalancers -H "User-Agent: python-neutronclient" -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}27fdcbb965d792e19c16fe852e01fe405fe8123b" -d '{"loadbalancer": {"vip_subnet_id": "7df6411d-1fc7-4d6c-9466-b043028884cf", "bandwidth": 0, "name": "lb-81696-1618384661", "admin_state_up": true}}'
+
+  DEBUG: keystoneauth.session RESP: [409] Content-Type: application/json Content-Length: 164 X-Openstack-Request-Id: req-ce30ca52-ca87-433d-9e74-717c85cbefc8 Date: Wed, 14 Apr 2021 07:17:45 GMT 
+
+  RESP BODY: {"NeutronError": {"message": "No more IP addresses available on network e288855c-5621-4406-8519-24554a5332e6.", "type": "IpAddressGenerationFailure", "detail": ""}}
+
+
+  DEBUG: keystoneauth.session POST call to network for http://10.251.13.59:9696/v2.0/lbaas/loadbalancers used request id req-ce30ca52-ca87-433d-9e74-717c85cbefc8
+
+  DEBUG: neutronclient.v2_0.client Error message: {"NeutronError": {"message": "No more IP addresses available on network e288855c-5621-4406-8519-24554a5332e6.", "type": "IpAddressGenerationFailure", "detail": ""}}
+
+  ERROR: neutronclient.shell No more IP addresses available on network e288855c-5621-4406-8519-24554a5332e6.
+
+  Neutron server returns request_ids: ['req-ce30ca52-ca87-433d-9e74-717c85cbefc8']
+
+  Traceback (most recent call last):
+    File "/usr/lib/python2.7/site-packages/neutronclient/shell.py", line 528, in run_subcommand
+      return run_command(cmd, cmd_parser, sub_argv)
+    File "/usr/lib/python2.7/site-packages/neutronclient/shell.py", line 68, in run_command
+      return cmd.run(known_args)
+    File "/usr/lib/python2.7/site-packages/neutronclient/neutron/v2_0/__init__.py", line 324, in run
+      return super(NeutronCommand, self).run(parsed_args)
+    File "/usr/lib/python2.7/site-packages/cliff/display.py", line 113, in run
+      column_names, data = self.take_action(parsed_args)
+    File "/usr/lib/python2.7/site-packages/neutronclient/neutron/v2_0/__init__.py", line 406, in take_action
+      data = obj_creator(body)
+    File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py", line 1110, in create_loadbalancer
+      return self.post(self.lbaas_loadbalancers_path, body=body)
+    File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py", line 357, in post
+      headers=headers, params=params)
+    File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py", line 292, in do_request
+      self._handle_fault_response(status_code, replybody, resp)
+    File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py", line 268, in _handle_fault_response
+      exception_handler_v20(status_code, error_body)
+    File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py", line 92, in exception_handler_v20
+      request_ids=request_ids)
+  IpAddressGenerationFailureClient: No more IP addresses available on network e288855c-5621-4406-8519-24554a5332e6.
+
+  Neutron server returns request_ids: ['req-ce30ca52-ca87-433d-9e74-717c85cbefc8']
+stderr_lines:
+  - neutron CLI is deprecated and will be removed in the future. Use openstack
+    CLI instead.
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('token_endpoint
+    = openstackclient.api.auth_plugin:TokenEndpoint')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v1password =
+    swiftclient.authv1:PasswordLoader')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('aodh-noauth =
+    aodhclient.noauth:AodhNoAuthLoader')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-basic
+    = gnocchiclient.auth:GnocchiBasicLoader')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-noauth
+    = gnocchiclient.auth:GnocchiNoAuthLoader')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v2token =
+    keystoneauth1.loading._plugins.identity.v2:Token')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('none =
+    keystoneauth1.loading._plugins.noauth:NoAuth')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3oauth1 =
+    keystoneauth1.extras.oauth1._loading:V3OAuth1')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('admin_token =
+    keystoneauth1.loading._plugins.admin_token:AdminToken')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcauthcode
+    =
+    keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAuthorizationCode')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v2password =
+    keystoneauth1.loading._plugins.identity.v2:Password')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3samlpassword
+    = keystoneauth1.extras._saml2._loading:Saml2Password')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3password =
+    keystoneauth1.loading._plugins.identity.v3:Password')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3adfspassword
+    = keystoneauth1.extras._saml2._loading:ADFSPassword')"
+  - "DEBUG: stevedore.extension found extension
+    EntryPoint.parse('v3oidcaccesstoken =
+    keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAccessToken')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcpassword
+    = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectPassword')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3kerberos =
+    keystoneauth1.extras.kerberos._loading:Kerberos')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('token =
+    keystoneauth1.loading._plugins.identity.generic:Token')"
+  - "DEBUG: stevedore.extension found extension
+    EntryPoint.parse('v3oidcclientcredentials =
+    keystoneauth1.loading._plugins.identity.v3:OpenIDConnectClientCredentials')"
+  - "DEBUG: stevedore.extension found extension
+    EntryPoint.parse('v3tokenlessauth =
+    keystoneauth1.loading._plugins.identity.v3:TokenlessAuth')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3token =
+    keystoneauth1.loading._plugins.identity.v3:Token')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3totp =
+    keystoneauth1.loading._plugins.identity.v3:TOTP')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('password =
+    keystoneauth1.loading._plugins.identity.generic:Password')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('v3fedkerb =
+    keystoneauth1.extras.kerberos._loading:MappedKerberos')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('noauth =
+    cinderclient.contrib.noauth:CinderNoAuthLoader')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('table =
+    cliff.formatters.table:TableFormatter')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('json =
+    cliff.formatters.json_format:JSONFormatter')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('shell =
+    cliff.formatters.shell:ShellFormatter')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('value =
+    cliff.formatters.value:ValueFormatter')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('yaml =
+    cliff.formatters.yaml_format:YAMLFormatter')"
+  - "DEBUG: neutronclient.neutron.v2_0.lb.v2.loadbalancer.CreateLoadBalancer
+    run(Namespace(admin_state=True, bandwidth=None, columns=[],
+    description=None, fit_width=False, flavor=None, formatter='table',
+    max_width=0, name=u'lb-81696-1618384661', noindent=False, prefix='',
+    print_empty=False, provider=None, request_format='json', tenant_id=None,
+    variables=[], vip_address=None, vip_subnet=u'10.251.27.0/24'))"
+  - 'DEBUG: keystoneauth.session REQ: curl -g -i -X GET
+    http://10.251.13.59:5000/v3 -H "Accept: application/json" -H "User-Agent:
+    neutron keystoneauth1/3.1.0 python-requests/2.14.2 CPython/2.7.5"'
+  - "DEBUG: keystoneauth.session RESP: [200] Date: Wed, 14 Apr 2021 07:17:42 GMT
+    Server: Apache Vary: X-Auth-Token,Accept-Encoding x-openstack-request-id:
+    req-88e776ed-63ed-4fc1-9845-1f8b2631c69d Content-Encoding: gzip
+    Content-Length: 195 Content-Type: application/json "
+  - 'RESP BODY: {"version": {"status": "stable", "updated":
+    "2017-02-22T00:00:00Z", "media-types": [{"base": "application/json", "type":
+    "application/vnd.openstack.identity-v3+json"}], "id": "v3.8", "links":
+    [{"href": "http://10.251.13.59:5000/v3/", "rel": "self"}]}}'
+  - ""
+  - "DEBUG: keystoneauth.session GET call to None for
+    http://10.251.13.59:5000/v3 used request id
+    req-88e776ed-63ed-4fc1-9845-1f8b2631c69d"
+  - "DEBUG: keystoneauth.identity.v3.base Making authentication request to
+    http://10.251.13.59:5000/v3/auth/tokens"
+  - 'DEBUG: keystoneauth.identity.v3.base {"token": {"is_domain": false,
+    "methods": ["password"], "roles": [{"id":
+    "1449670a2eb1432788867e4965010317", "name": "admin"}], "expires_at":
+    "2021-04-14T08:17:43.000000Z", "project": {"domain": {"id": "default",
+    "name": "Default"}, "id": "5fecf9bdd7b84e1eb9f08b14023400c6", "name":
+    "admin"}, "catalog": [{"endpoints": [{"url": "http://10.251.12.57:9311/",
+    "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id":
+    "6457946a7666416da0d8c9497f51d400"}, {"url": "http://10.251.13.59:9311/",
+    "interface": "public", "region": "regionOne", "region_id": "regionOne",
+    "id": "6de1e417683b45458ca0af6cbebceedf"}, {"url":
+    "http://10.251.12.57:9311/", "interface": "internal", "region": "regionOne",
+    "region_id": "regionOne", "id": "c9f3a57ff4fe43f5b505815dba2e71cc"}],
+    "type": "key-manager", "id": "08550763a90a4c268a3e048a4e998b8a", "name":
+    "barbican"}, {"endpoints": [{"url": "http://10.251.12.57:8977", "interface":
+    "internal", "region": "regionOne", "region_id": "regionOne", "id":
+    "287294cc41894ab0aa69fb6279100dcb"}, {"url": "http://10.251.12.57:8977",
+    "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id":
+    "628031a64b9c458fb2c8ca51cca6f5bc"}, {"url": "http://10.251.13.59:8977",
+    "interface": "public", "region": "regionOne", "region_id": "regionOne",
+    "id": "faae0093dfcc418ea9eb14e1f3091f9a"}], "type": "event", "id":
+    "0da4511cd627452bbe9d25a7492f9f00", "name": "panko"}, {"endpoints": [{"url":
+    "http://10.251.12.57:8776/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "internal", "region": "regionOne", "region_id": "regionOne", "id":
+    "13bd8e98733442a6bba7c16297d1dbeb"}, {"url":
+    "http://10.251.13.59:8776/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "public", "region": "regionOne", "region_id": "regionOne", "id":
+    "3e34394ffc964f688a40d8261c3a8841"}, {"url":
+    "http://10.251.12.57:8776/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "admin", "region": "regionOne", "region_id": "regionOne", "id":
+    "d45a08a4f1c1455e9039460cc054e61d"}], "type": "volume", "id":
+    "1a3d05b8aa4a4752adcf658872684a4e", "name": "cinder"}, {"endpoints":
+    [{"url": "http://10.251.12.57:9696", "interface": "admin", "region":
+    "regionOne", "region_id": "regionOne", "id":
+    "15895dcddf7d4aaf9c6b926b1ec3e91d"}, {"url": "http://10.251.13.59:9696",
+    "interface": "public", "region": "regionOne", "region_id": "regionOne",
+    "id": "3ed4d943017c47c6892b79283b765e33"}, {"url":
+    "http://10.251.12.57:9696", "interface": "internal", "region": "regionOne",
+    "region_id": "regionOne", "id": "a2a8465d50fb4538b7fd2b3a994fb141"}],
+    "type": "network", "id": "1b1433f0a4d143beb43f610ad8809bf9", "name":
+    "neutron"}, {"endpoints": [{"url": "http://10.251.12.57:8000/v1",
+    "interface": "internal", "region": "regionOne", "region_id": "regionOne",
+    "id": "2b8d61d17989485ca49b358091e323e5"}, {"url":
+    "http://10.251.13.59:8000/v1", "interface": "public", "region": "regionOne",
+    "region_id": "regionOne", "id": "516742ef82a24782af974de0033ba3cf"}, {"url":
+    "http://10.251.12.57:8000/v1", "interface": "admin", "region": "regionOne",
+    "region_id": "regionOne", "id": "85bb5eaceb6e4234ba299389300106bb"}],
+    "type": "cloudformation", "id": "268db052833f4578a61a86fd1792d215", "name":
+    "heat-cfn"}, {"endpoints": [{"url": "http://10.251.13.59:5000", "interface":
+    "public", "region": "regionOne", "region_id": "regionOne", "id":
+    "25a6f6994c0e425aace5ba161d132f54"}, {"url": "http://10.251.12.57:5000",
+    "interface": "internal", "region": "regionOne", "region_id": "regionOne",
+    "id": "c4119d36ec26441bb40b3995463145a1"}, {"url":
+    "http://10.251.11.39:35357", "interface": "admin", "region": "regionOne",
+    "region_id": "regionOne", "id": "f1dbec41441f44e989353fd54fcd69b2"}],
+    "type": "identity", "id": "29a2dfe6407942d2a17ffb7cb9ad3e4f", "name":
+    "keystone"}, {"endpoints": [{"url":
+    "http://10.251.12.57:8776/v3/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "internal", "region": "regionOne", "region_id": "regionOne", "id":
+    "5c71594ac3b14fe6976f7ea3a48cb1e6"}, {"url":
+    "http://10.251.12.57:8776/v3/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "admin", "region": "regionOne", "region_id": "regionOne", "id":
+    "9f569a5ef4de43c983df4ec4b64ba3a2"}, {"url":
+    "http://10.251.13.59:8776/v3/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "public", "region": "regionOne", "region_id": "regionOne", "id":
+    "f46db1fa29784651bde3a5fdc4c44fa6"}], "type": "volumev3", "id":
+    "2cc66d84ee8a489483f755123f8c83f0", "name": "cinderv3"}, {"endpoints":
+    [{"url": "http://10.251.12.57:8776/v2/5fecf9bdd7b84e1eb9f08b14023400c6",
+    "interface": "internal", "region": "regionOne", "region_id": "regionOne",
+    "id": "61677cd14034460387197a1a0e081de8"}, {"url":
+    "http://10.251.12.57:8776/v2/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "admin", "region": "regionOne", "region_id": "regionOne", "id":
+    "7e9a5722d52249509fd395f09ec4739e"}, {"url":
+    "http://10.251.13.59:8776/v2/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "public", "region": "regionOne", "region_id": "regionOne", "id":
+    "e9edb65ca5384f2fb870bc67cfee3f6e"}], "type": "volumev2", "id":
+    "6d745a36f71945e8a3d14da569a1973a", "name": "cinderv2"}, {"endpoints":
+    [{"url": "http://10.251.12.57:8004/v1/5fecf9bdd7b84e1eb9f08b14023400c6",
+    "interface": "internal", "region": "regionOne", "region_id": "regionOne",
+    "id": "001bf1fced374d1f83cc30e14f3f6785"}, {"url":
+    "http://10.251.12.57:8004/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "admin", "region": "regionOne", "region_id": "regionOne", "id":
+    "5b51ea448a4848838ba34717f6153940"}, {"url":
+    "http://10.251.13.59:8004/v1/5fecf9bdd7b84e1eb9f08b14023400c6", "interface":
+    "public", "region": "regionOne", "region_id": "regionOne", "id":
+    "a085a15d761b4f0a9e6713894ff70d91"}], "type": "orchestration", "id":
+    "7325f20e24af4c81bb6151e636d5ea9d", "name": "heat"}, {"endpoints": [{"url":
+    "http://10.251.13.59:8042", "interface": "public", "region": "regionOne",
+    "region_id": "regionOne", "id": "0db59961610d444f840fe74aa5d494bc"}, {"url":
+    "http://10.251.12.57:8042", "interface": "admin", "region": "regionOne",
+    "region_id": "regionOne", "id": "2b40066ea2b143f68d87838670c41a8d"}, {"url":
+    "http://10.251.12.57:8042", "interface": "internal", "region": "regionOne",
+    "region_id": "regionOne", "id": "3ecee3fb4d874c76bd06c25f1ec42ce5"}],
+    "type": "alarming", "id": "9a89f6f5af58460e97d74a6fd251a214", "name":
+    "aodh"}, {"endpoints": [{"url": "http://10.251.12.57:9292", "interface":
+    "internal", "region": "regionOne", "region_id": "regionOne", "id":
+    "0436875b14e546ccb287bf257aa0b8de"}, {"url": "http://10.251.13.59:9292",
+    "interface": "public", "region": "regionOne", "region_id": "regionOne",
+    "id": "7aced10a931d4434968b267fb99e80db"}, {"url":
+    "http://10.251.12.57:9292", "interface": "admin", "region": "regionOne",
+    "region_id": "regionOne", "id": "bcccacab150c4e4bb16e6121a1b097a4"}],
+    "type": "image", "id": "b97bbe5a17ab435392bb51615bb785d3", "name":
+    "glance"}, {"endpoints": [], "type": "metering", "id":
+    "c3ab4c7f9c9f45d09a45d5246b282d22", "name": "ceilometer"}, {"endpoints":
+    [{"url": "http://10.251.12.57:8041", "interface": "internal", "region":
+    "regionOne", "region_id": "regionOne", "id":
+    "6702cc2d026d40f591e40da6e8d759e7"}, {"url": "http://10.251.13.59:8041",
+    "interface": "public", "region": "regionOne", "region_id": "regionOne",
+    "id": "9b1a80425f234915aa2b1dcea3ecd87d"}, {"url":
+    "http://10.251.12.57:8041", "interface": "admin", "region": "regionOne",
+    "region_id": "regionOne", "id": "bbb1fa4a4a904cf9bc82891f59a06a0e"}],
+    "type": "metric", "id": "d4647cc968b945a387ca0782eb7cd02c", "name":
+    "gnocchi"}, {"endpoints": [{"url": "http://10.251.12.57:8774/v2.1",
+    "interface": "admin", "region": "regionOne", "region_id": "regionOne", "id":
+    "185ffde3301e4cb68adc3b90dc4a09fd"}, {"url":
+    "http://10.251.12.57:8774/v2.1", "interface": "internal", "region":
+    "regionOne", "region_id": "regionOne", "id":
+    "536d7296cd144fd992469ef850f5a9cb"}, {"url":
+    "http://10.251.13.59:8774/v2.1", "interface": "public", "region":
+    "regionOne", "region_id": "regionOne", "id":
+    "62043a407a144675999d2db8c166b95b"}], "type": "compute", "id":
+    "d85ca8657af14e8b93eec150c1c08c08", "name": "nova"}, {"endpoints": [{"url":
+    "http://10.251.12.57:8778/placement", "interface": "internal", "region":
+    "regionOne", "region_id": "regionOne", "id":
+    "0f0d264a55ed48e18780dcdc03f76c76"}, {"url":
+    "http://10.251.13.59:8778/placement", "interface": "public", "region":
+    "regionOne", "region_id": "regionOne", "id":
+    "a036bcdcfe5b4545b280f23d79f2e760"}, {"url":
+    "http://10.251.12.57:8778/placement", "interface": "admin", "region":
+    "regionOne", "region_id": "regionOne", "id":
+    "d1667f8f7dcf481ca8c8ccb326a52423"}], "type": "placement", "id":
+    "f224a97234474c2c8169d4275fc0643c", "name": "placement"}, {"endpoints":
+    [{"url":
+    "http://10.251.17.51:8080/v1/AUTH_5fecf9bdd7b84e1eb9f08b14023400c6",
+    "interface": "internal", "region": "regionOne", "region_id": "regionOne",
+    "id": "4a4ac202a83d458da0bee1084f9d2341"}, {"url":
+    "http://10.251.13.59:8080/v1/AUTH_5fecf9bdd7b84e1eb9f08b14023400c6",
+    "interface": "public", "region": "regionOne", "region_id": "regionOne",
+    "id": "9c3930799ead462ea554cb0bad5ea7bf"}, {"url":
+    "http://10.251.17.51:8080", "interface": "admin", "region": "regionOne",
+    "region_id": "regionOne", "id": "9c5cb9079266409e8bd804af1b98d2f0"}],
+    "type": "object-store", "id": "faaaf4ac52d94316b26e3b99053ee135", "name":
+    "swift"}], "user": {"domain": {"id": "default", "name": "Default"},
+    "password_expires_at": null, "name": "admin", "id":
+    "c7a985ae0f674b7cb0d6d550b0245105"}, "audit_ids":
+    ["2xOraHyNQSW8ycL3ViTi1Q"], "issued_at": "2021-04-14T07:17:43.000000Z"}}'
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('bgpvpn =
+    networking_bgpvpn.neutronclient.neutron.v2_0.bgpvpn.bgpvpn')"
+  - "DEBUG: stevedore.extension found extension
+    EntryPoint.parse('l2_gateway_connection =
+    networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway_connection')"
+  - "DEBUG: stevedore.extension found extension EntryPoint.parse('l2_gateway =
+    networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway')"
+  - 'DEBUG: keystoneauth.session REQ: curl -g -i -X GET
+    http://10.251.13.59:9696/v2.0/subnets?fields=id&name=10.251.27.0%2F24 -H
+    "User-Agent: python-neutronclient" -H "Accept: application/json" -H
+    "X-Auth-Token: {SHA1}27fdcbb965d792e19c16fe852e01fe405fe8123b"'
+  - "DEBUG: keystoneauth.session RESP: [200] Content-Type: application/json
+    Content-Length: 59 X-Openstack-Request-Id:
+    req-1d833001-6ba6-4ca7-88cf-f0582b4e0511 Date: Wed, 14 Apr 2021 07:17:45 GMT
+    "
+  - 'RESP BODY: {"subnets":[{"id":"7df6411d-1fc7-4d6c-9466-b043028884cf"}]}'
+  - ""
+  - "DEBUG: keystoneauth.session GET call to network for
+    http://10.251.13.59:9696/v2.0/subnets?fields=id&name=10.251.27.0%2F24 used
+    request id req-1d833001-6ba6-4ca7-88cf-f0582b4e0511"
+  - "DEBUG: keystoneauth.session REQ: curl -g -i -X POST
+    http://10.251.13.59:9696/v2.0/lbaas/loadbalancers -H \"User-Agent:
+    python-neutronclient\" -H \"Content-Type: application/json\" -H \"Accept:
+    application/json\" -H \"X-Auth-Token:
+    {SHA1}27fdcbb965d792e19c16fe852e01fe405fe8123b\" -d '{\"loadbalancer\":
+    {\"vip_subnet_id\": \"7df6411d-1fc7-4d6c-9466-b043028884cf\", \"bandwidth\":
+    0, \"name\": \"lb-81696-1618384661\", \"admin_state_up\": true}}'"
+  - "DEBUG: keystoneauth.session RESP: [409] Content-Type: application/json
+    Content-Length: 164 X-Openstack-Request-Id:
+    req-ce30ca52-ca87-433d-9e74-717c85cbefc8 Date: Wed, 14 Apr 2021 07:17:45 GMT
+    "
+  - 'RESP BODY: {"NeutronError": {"message": "No more IP addresses available on
+    network e288855c-5621-4406-8519-24554a5332e6.", "type":
+    "IpAddressGenerationFailure", "detail": ""}}'
+  - ""
+  - "DEBUG: keystoneauth.session POST call to network for
+    http://10.251.13.59:9696/v2.0/lbaas/loadbalancers used request id
+    req-ce30ca52-ca87-433d-9e74-717c85cbefc8"
+  - 'DEBUG: neutronclient.v2_0.client Error message: {"NeutronError":
+    {"message": "No more IP addresses available on network
+    e288855c-5621-4406-8519-24554a5332e6.", "type":
+    "IpAddressGenerationFailure", "detail": ""}}'
+  - "ERROR: neutronclient.shell No more IP addresses available on network
+    e288855c-5621-4406-8519-24554a5332e6."
+  - "Neutron server returns request_ids:
+    ['req-ce30ca52-ca87-433d-9e74-717c85cbefc8']"
+  - "Traceback (most recent call last):"
+  - '  File "/usr/lib/python2.7/site-packages/neutronclient/shell.py", line 528,
+    in run_subcommand'
+  - "    return run_command(cmd, cmd_parser, sub_argv)"
+  - '  File "/usr/lib/python2.7/site-packages/neutronclient/shell.py", line 68,
+    in run_command'
+  - "    return cmd.run(known_args)"
+  - '  File
+    "/usr/lib/python2.7/site-packages/neutronclient/neutron/v2_0/__init__.py",
+    line 324, in run'
+  - "    return super(NeutronCommand, self).run(parsed_args)"
+  - '  File "/usr/lib/python2.7/site-packages/cliff/display.py", line 113, in
+    run'
+  - "    column_names, data = self.take_action(parsed_args)"
+  - '  File
+    "/usr/lib/python2.7/site-packages/neutronclient/neutron/v2_0/__init__.py",
+    line 406, in take_action'
+  - "    data = obj_creator(body)"
+  - '  File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py",
+    line 1110, in create_loadbalancer'
+  - "    return self.post(self.lbaas_loadbalancers_path, body=body)"
+  - '  File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py",
+    line 357, in post'
+  - "    headers=headers, params=params)"
+  - '  File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py",
+    line 292, in do_request'
+  - "    self._handle_fault_response(status_code, replybody, resp)"
+  - '  File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py",
+    line 268, in _handle_fault_response'
+  - "    exception_handler_v20(status_code, error_body)"
+  - '  File "/usr/lib/python2.7/site-packages/neutronclient/v2_0/client.py",
+    line 92, in exception_handler_v20'
+  - "    request_ids=request_ids)"
+  - "IpAddressGenerationFailureClient: No more IP addresses available on network
+    e288855c-5621-4406-8519-24554a5332e6."
+  - "Neutron server returns request_ids:
+    ['req-ce30ca52-ca87-433d-9e74-717c85cbefc8']"
+stdout: ""
+stdout_lines: []

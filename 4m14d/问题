@@ -1,0 +1,182 @@
+basic脚本在 10.250.11.111 上就能跑通，在kddi hosts上就报错
+No more IP addresses available on network e288855c-5621-4406-8519-24554a5332e6.
+
+
+SUCCESS:
+ neutron_servers : 10.250.11.111
+ bigips: 10.250.11.195
+
+FAILED:
+  neutron_servers : 10.251.13.58
+                    10.251.13.56
+                    10.251.13.62
+bigips: 10.250.11.193  或者 195
+报错 
+
+TASK [basic test: create lbaasv2 resources] *******************************************************************
+failed: [10.251.13.58] (item=neutron --debug lbaas-pool-create --name pl-97235-1618393660 --loadbalancer lb-97235-1618393660 --lb-algorithm ROUND_ROBIN --protocol HTTP) =>
+ {"ansible_loop_var": "item", "changed": true, 
+ "cmd": 
+ "source /home/heat-admin/overcloudrc && bash /tmp/scripts/wait_assert_lb_active.sh lb-97235-1618393660 && 
+ neutron --debug lbaas-pool-create --name pl-97235-1618393660 --loadbalancer lb-97235-1618393660 --lb-algorithm ROUND_ROBIN --protocol HTTP\n",
+  "delta": "0:00:08.659208", 
+  "end": "2021-04-14 17:47:55.253913",
+   "item": "neutron --debug lbaas-pool-create --name pl-97235-1618393660 --loadbalancer lb-97235-1618393660 --lb-algorithm ROUND_ROBIN --protocol HTTP", 
+   "msg": "non-zero return code", 
+   "rc": 1, 
+   "start": "2021-04-14 17:47:46.594705", 
+   "stderr": "neutron CLI is deprecated and will be removed in the future. Use openstack CLI instead.",
+    "stderr_lines": ["neutron CLI is deprecated and will be removed in the future. Use openstack CLI instead."], 
+    "stdout": "loadbalancer: lb-97235-1618393660\nprovisionging status: ERROR", "stdout_lines": ["loadbalancer: lb-97235-1618393660", "provisionging status: ERROR"]}
+
+
+
+创建 load balancer： 
+ neutron --debug lbaas-loadbalancer-create --name lb-97403-1618394034  10.251.27.0/24
+
+ 输出：
+ neutron CLI is deprecated and will be removed in the future. Use openstack CLI instead.
+DEBUG: stevedore.extension found extension EntryPoint.parse('token_endpoint = openstackclient.api.auth_plugin:TokenEndpoint')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v1password = swiftclient.authv1:PasswordLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('aodh-noauth = aodhclient.noauth:AodhNoAuthLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-basic = gnocchiclient.auth:GnocchiBasicLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-noauth = gnocchiclient.auth:GnocchiNoAuthLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v2token = keystoneauth1.loading._plugins.identity.v2:Token')
+DEBUG: stevedore.extension found extension EntryPoint.parse('none = keystoneauth1.loading._plugins.noauth:NoAuth')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oauth1 = keystoneauth1.extras.oauth1._loading:V3OAuth1')
+DEBUG: stevedore.extension found extension EntryPoint.parse('admin_token = keystoneauth1.loading._plugins.admin_token:AdminToken')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcauthcode = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAuthorizationCode')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v2password = keystoneauth1.loading._plugins.identity.v2:Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3samlpassword = keystoneauth1.extras._saml2._loading:Saml2Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3password = keystoneauth1.loading._plugins.identity.v3:Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3adfspassword = keystoneauth1.extras._saml2._loading:ADFSPassword')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcaccesstoken = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAccessToken')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcpassword = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectPassword')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3kerberos = keystoneauth1.extras.kerberos._loading:Kerberos')
+DEBUG: stevedore.extension found extension EntryPoint.parse('token = keystoneauth1.loading._plugins.identity.generic:Token')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcclientcredentials = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectClientCredentials')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3tokenlessauth = keystoneauth1.loading._plugins.identity.v3:TokenlessAuth')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3token = keystoneauth1.loading._plugins.identity.v3:Token')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3totp = keystoneauth1.loading._plugins.identity.v3:TOTP')
+DEBUG: stevedore.extension found extension EntryPoint.parse('password = keystoneauth1.loading._plugins.identity.generic:Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3fedkerb = keystoneauth1.extras.kerberos._loading:MappedKerberos')
+DEBUG: stevedore.extension found extension EntryPoint.parse('noauth = cinderclient.contrib.noauth:CinderNoAuthLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('table = cliff.formatters.table:TableFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('json = cliff.formatters.json_format:JSONFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('shell = cliff.formatters.shell:ShellFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('value = cliff.formatters.value:ValueFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('yaml = cliff.formatters.yaml_format:YAMLFormatter')
+DEBUG: neutronclient.neutron.v2_0.lb.v2.loadbalancer.CreateLoadBalancer run(Namespace(admin_state=True, bandwidth=None, columns=[], description=None, fit_width=False, flavor=None, formatter='table', max_width=0, name=u'lb-97403-1618394034', noindent=False, prefix='', print_empty=False, provider=None, request_format='json', tenant_id=None, variables=[], vip_address=None, vip_subnet=u'10.251.27.0/24'))
+DEBUG: keystoneauth.session REQ: curl -g -i -X GET http://10.251.13.59:5000/v2.0 -H "Accept: application/json" -H "User-Agent: neutron keystoneauth1/3.1.0 python-requests/2.14.2 CPython/2.7.5"
+DEBUG: keystoneauth.session RESP: [200] Date: Wed, 14 Apr 2021 09:58:07 GMT Server: Apache Vary: X-Auth-Token,Accept-Encoding x-openstack-request-id: req-20e12741-bcd3-4951-8d79-52163a09f950 Content-Encoding: gzip Content-Length: 232 Content-Type: application/json 
+RESP BODY: {"version": {"status": "deprecated", "updated": "2016-08-04T00:00:00Z", "media-types": [{"base": "application/json", "type": "application/vnd.openstack.identity-v2.0+json"}], "id": "v2.0", "links": [{"href": "http://10.251.13.59:5000/v2.0/", "rel": "self"}, {"href": "https://docs.openstack.org/", "type": "text/html", "rel": "describedby"}]}}
+
+DEBUG: keystoneauth.session GET call to None for http://10.251.13.59:5000/v2.0 used request id req-20e12741-bcd3-4951-8d79-52163a09f950
+DEBUG: keystoneauth.identity.v2 Making authentication request to http://10.251.13.59:5000/v2.0/tokens
+DEBUG: stevedore.extension found extension EntryPoint.parse('bgpvpn = networking_bgpvpn.neutronclient.neutron.v2_0.bgpvpn.bgpvpn')
+DEBUG: stevedore.extension found extension EntryPoint.parse('l2_gateway_connection = networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway_connection')
+DEBUG: stevedore.extension found extension EntryPoint.parse('l2_gateway = networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway')
+DEBUG: keystoneauth.session REQ: curl -g -i -X GET http://10.251.13.59:9696/v2.0/subnets?fields=id&name=10.251.27.0%2F24 -H "User-Agent: python-neutronclient" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}1b8623c62f757c2d805a7d5e06a07122501b0f9a"
+DEBUG: keystoneauth.session RESP: [200] Content-Type: application/json Content-Length: 59 X-Openstack-Request-Id: req-94ce88cf-6ca8-4d86-9492-91e439ebac29 Date: Wed, 14 Apr 2021 09:58:08 GMT 
+RESP BODY: {"subnets":[{"id":"7df6411d-1fc7-4d6c-9466-b043028884cf"}]}
+
+DEBUG: keystoneauth.session GET call to network for http://10.251.13.59:9696/v2.0/subnets?fields=id&name=10.251.27.0%2F24 used request id req-94ce88cf-6ca8-4d86-9492-91e439ebac29
+DEBUG: keystoneauth.session REQ: curl -g -i -X POST http://10.251.13.59:9696/v2.0/lbaas/loadbalancers -H "User-Agent: python-neutronclient" -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}1b8623c62f757c2d805a7d5e06a07122501b0f9a" -d '{"loadbalancer": {"vip_subnet_id": "7df6411d-1fc7-4d6c-9466-b043028884cf", "bandwidth": 0, "name": "lb-97403-1618394034", "admin_state_up": true}}'
+DEBUG: keystoneauth.session RESP: [201] Content-Type: application/json Content-Length: 460 X-Openstack-Request-Id: req-2b9df4b9-f48e-4766-a100-8d1b8950ce4f Date: Wed, 14 Apr 2021 09:58:10 GMT 
+RESP BODY: {"loadbalancer": {"description": "", "admin_state_up": true, "tenant_id": "5fecf9bdd7b84e1eb9f08b14023400c6", "provisioning_status": "ERROR", "listeners": [], "vip_subnet_id": "7df6411d-1fc7-4d6c-9466-b043028884cf", "bandwidth": 0, "vip_address": "10.251.27.117", "vip_port_id": "9058ece4-d106-444f-a92a-941a32a16eba", "provider": "core", "pools": [], "id": "16c29520-eb9f-4500-9298-c35158f75767", "operating_status": "OFFLINE", "name": "lb-97403-1618394034"}}
+
+DEBUG: keystoneauth.session POST call to network for http://10.251.13.59:9696/v2.0/lbaas/loadbalancers used request id req-2b9df4b9-f48e-4766-a100-8d1b8950ce4f
+Created a new loadbalancer:
++---------------------+--------------------------------------+
+| Field               | Value                                |
++---------------------+--------------------------------------+
+| admin_state_up      | True                                 |
+| bandwidth           | 0                                    |
+| description         |                                      |
+| id                  | 16c29520-eb9f-4500-9298-c35158f75767 |
+| listeners           |                                      |
+| name                | lb-97403-1618394034                  |
+| operating_status    | OFFLINE                              |
+| pools               |                                      |
+| provider            | core                                 |
+| provisioning_status | ERROR                                |
+| tenant_id           | 5fecf9bdd7b84e1eb9f08b14023400c6     |
+| vip_address         | 10.251.27.117                        |
+| vip_port_id         | 9058ece4-d106-444f-a92a-941a32a16eba |
+| vip_subnet_id       | 7df6411d-1fc7-4d6c-9466-b043028884cf |
++---------------------+--------------------------------------+
+
+
+创建pool
+neutron --debug lbaas-pool-create --name pl-97403-1618394034 --loadbalancer lb-97403-1618394034 --lb-algorithm ROUND_ROBIN --protocol HTTP
+
+结果：
+
+neutron CLI is deprecated and will be removed in the future. Use openstack CLI instead.
+DEBUG: stevedore.extension found extension EntryPoint.parse('token_endpoint = openstackclient.api.auth_plugin:TokenEndpoint')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v1password = swiftclient.authv1:PasswordLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('aodh-noauth = aodhclient.noauth:AodhNoAuthLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-basic = gnocchiclient.auth:GnocchiBasicLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('gnocchi-noauth = gnocchiclient.auth:GnocchiNoAuthLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v2token = keystoneauth1.loading._plugins.identity.v2:Token')
+DEBUG: stevedore.extension found extension EntryPoint.parse('none = keystoneauth1.loading._plugins.noauth:NoAuth')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oauth1 = keystoneauth1.extras.oauth1._loading:V3OAuth1')
+DEBUG: stevedore.extension found extension EntryPoint.parse('admin_token = keystoneauth1.loading._plugins.admin_token:AdminToken')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcauthcode = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAuthorizationCode')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v2password = keystoneauth1.loading._plugins.identity.v2:Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3samlpassword = keystoneauth1.extras._saml2._loading:Saml2Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3password = keystoneauth1.loading._plugins.identity.v3:Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3adfspassword = keystoneauth1.extras._saml2._loading:ADFSPassword')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcaccesstoken = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectAccessToken')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcpassword = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectPassword')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3kerberos = keystoneauth1.extras.kerberos._loading:Kerberos')
+DEBUG: stevedore.extension found extension EntryPoint.parse('token = keystoneauth1.loading._plugins.identity.generic:Token')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3oidcclientcredentials = keystoneauth1.loading._plugins.identity.v3:OpenIDConnectClientCredentials')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3tokenlessauth = keystoneauth1.loading._plugins.identity.v3:TokenlessAuth')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3token = keystoneauth1.loading._plugins.identity.v3:Token')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3totp = keystoneauth1.loading._plugins.identity.v3:TOTP')
+DEBUG: stevedore.extension found extension EntryPoint.parse('password = keystoneauth1.loading._plugins.identity.generic:Password')
+DEBUG: stevedore.extension found extension EntryPoint.parse('v3fedkerb = keystoneauth1.extras.kerberos._loading:MappedKerberos')
+DEBUG: stevedore.extension found extension EntryPoint.parse('noauth = cinderclient.contrib.noauth:CinderNoAuthLoader')
+DEBUG: stevedore.extension found extension EntryPoint.parse('table = cliff.formatters.table:TableFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('json = cliff.formatters.json_format:JSONFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('shell = cliff.formatters.shell:ShellFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('value = cliff.formatters.value:ValueFormatter')
+DEBUG: stevedore.extension found extension EntryPoint.parse('yaml = cliff.formatters.yaml_format:YAMLFormatter')
+DEBUG: neutronclient.neutron.v2_0.lb.v2.pool.CreatePool run(Namespace(admin_state=True, columns=[], description=None, fit_width=False, formatter='table', lb_algorithm=u'ROUND_ROBIN', listener=None, loadbalancer=u'lb-97403-1618394034', max_width=0, name=u'pl-97403-1618394034', noindent=False, prefix='', print_empty=False, protocol=u'HTTP', request_format='json', session_persistence=None, tenant_id=None, variables=[]))
+DEBUG: keystoneauth.session REQ: curl -g -i -X GET http://10.251.13.59:5000/v2.0 -H "Accept: application/json" -H "User-Agent: neutron keystoneauth1/3.1.0 python-requests/2.14.2 CPython/2.7.5"
+DEBUG: keystoneauth.session RESP: [200] Date: Wed, 14 Apr 2021 10:00:17 GMT Server: Apache Vary: X-Auth-Token,Accept-Encoding x-openstack-request-id: req-f87f6536-1d99-4a8e-9a81-7a93dcf5b0dd Content-Encoding: gzip Content-Length: 232 Content-Type: application/json 
+RESP BODY: {"version": {"status": "deprecated", "updated": "2016-08-04T00:00:00Z", "media-types": [{"base": "application/json", "type": "application/vnd.openstack.identity-v2.0+json"}], "id": "v2.0", "links": [{"href": "http://10.251.13.59:5000/v2.0/", "rel": "self"}, {"href": "https://docs.openstack.org/", "type": "text/html", "rel": "describedby"}]}}
+
+DEBUG: keystoneauth.session GET call to None for http://10.251.13.59:5000/v2.0 used request id req-f87f6536-1d99-4a8e-9a81-7a93dcf5b0dd
+DEBUG: keystoneauth.identity.v2 Making authentication request to http://10.251.13.59:5000/v2.0/tokens
+DEBUG: stevedore.extension found extension EntryPoint.parse('bgpvpn = networking_bgpvpn.neutronclient.neutron.v2_0.bgpvpn.bgpvpn')
+DEBUG: stevedore.extension found extension EntryPoint.parse('l2_gateway_connection = networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway_connection')
+DEBUG: stevedore.extension found extension EntryPoint.parse('l2_gateway = networking_l2gw.l2gatewayclient.l2gw_client_ext._l2_gateway')
+DEBUG: keystoneauth.session REQ: curl -g -i -X GET http://10.251.13.59:9696/v2.0/lbaas/loadbalancers?fields=id&name=lb-97403-1618394034 -H "User-Agent: python-neutronclient" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}12727ca45ba083df502695250bf398c67d9a5622"
+DEBUG: keystoneauth.session RESP: [200] Content-Type: application/json Content-Length: 414 X-Openstack-Request-Id: req-cfd5d974-2516-4bb8-91e8-a4c1b023d1c7 Date: Wed, 14 Apr 2021 10:00:18 GMT 
+RESP BODY: {"loadbalancers": [{"description": "", "provisioning_status": "ERROR", "admin_state_up": true, "bandwidth": 0, "id": "16c29520-eb9f-4500-9298-c35158f75767", "pools": [], "listeners": [], "vip_port_id": "9058ece4-d106-444f-a92a-941a32a16eba", "vip_address": "10.251.27.117", "vip_subnet_id": "7df6411d-1fc7-4d6c-9466-b043028884cf", "provider": "core", "operating_status": "OFFLINE", "name": "lb-97403-1618394034"}]}
+
+DEBUG: keystoneauth.session GET call to network for http://10.251.13.59:9696/v2.0/lbaas/loadbalancers?fields=id&name=lb-97403-1618394034 used request id req-cfd5d974-2516-4bb8-91e8-a4c1b023d1c7
+DEBUG: keystoneauth.session REQ: curl -g -i -X POST http://10.251.13.59:9696/v2.0/lbaas/pools -H "User-Agent: python-neutronclient" -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}12727ca45ba083df502695250bf398c67d9a5622" -d '{"pool": {"lb_algorithm": "ROUND_ROBIN", "admin_state_up": true, "protocol": "HTTP", "name": "pl-97403-1618394034", "loadbalancer_id": "16c29520-eb9f-4500-9298-c35158f75767"}}'
+DEBUG: keystoneauth.session RESP: [201] Content-Type: application/json Content-Length: 384 X-Openstack-Request-Id: req-9d44e643-b8fc-464b-9a44-31add1ef7bcf Date: Wed, 14 Apr 2021 10:00:19 GMT 
+RESP BODY: {"pool": {"lb_algorithm": "ROUND_ROBIN", "protocol": "HTTP", "description": "", "admin_state_up": true, "loadbalancers": [{"id": "16c29520-eb9f-4500-9298-c35158f75767"}], "tenant_id": "5fecf9bdd7b84e1eb9f08b14023400c6", "session_persistence": null, "healthmonitor_id": null, "listeners": [], "members": [], "id": "9777b385-8fba-49b5-9924-c5f8995ac867", "name": "pl-97403-1618394034"}}
+
+DEBUG: keystoneauth.session POST call to network for http://10.251.13.59:9696/v2.0/lbaas/pools used request id req-9d44e643-b8fc-464b-9a44-31add1ef7bcf
+Created a new pool:
++---------------------+------------------------------------------------+
+| Field               | Value                                          |
++---------------------+------------------------------------------------+
+| admin_state_up      | True                                           |
+| description         |                                                |
+| healthmonitor_id    |                                                |
+| id                  | 9777b385-8fba-49b5-9924-c5f8995ac867           |
+| lb_algorithm        | ROUND_ROBIN                                    |
+| listeners           |                                                |
+| loadbalancers       | {"id": "16c29520-eb9f-4500-9298-c35158f75767"} |
+| members             |                                                |
+| name                | pl-97403-1618394034                            |
+| protocol            | HTTP                                           |
+| session_persistence |                                                |
+| tenant_id           | 5fecf9bdd7b84e1eb9f08b14023400c6               |
++---------------------+------------------------------------------------+

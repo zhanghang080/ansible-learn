@@ -1,8 +1,0 @@
-https://10.250.11.191 
-
-admin
-P@ssw0rd123
-
-bigIp:
-root
-Gouliguojia1qazw
